@@ -1,6 +1,6 @@
 package ginp14.ngongocnam.datn.dao;
 
-import ginp14.project3.model.Category;
+import ginp14.ngongocnam.datn.model.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

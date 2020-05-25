@@ -5,85 +5,85 @@
       layout:decorate="~{fragments/master_layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="#{label.registration}">Title</title>
     <link rel="stylesheet" th:href="@{/css/custom/register.css}"/>
 </head>
 <body>
     <div layout:fragment="content" class="container register-block">
         <form action="#" th:action="@{/userRegisterProcess}" th:object="${user}" method="post" class="form-horizontal" role="form">
-            <h2>Registration</h2>
+            <h2 th:text="#{label.registration}">Registration</h2>
             <div class="form-group">
-                <label for="username" class="col-sm-3 control-label">Username</label>
+                <label for="username" class="col-sm-3 control-label" th:text="#{label.username}">Username</label>
                 <div class="col-sm-9">
                     <input type="text" id="username" placeholder="Username" th:field="*{username}" class="form-control" autofocus>
                 </div>
                 <div class="text text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
                 <div th:if="${usernameExist}">
-                    <div class="text text-danger">Username is already used</div>
+                    <div class="text text-danger" th:text="#{label.username.existed}">Username is already used</div>
                 </div>
             </div>
             <div class="form-group">
-                <label for="password" class="col-sm-3 control-label">Password*</label>
+                <label for="password" class="col-sm-3 control-label" th:text="#{label.password}">Password*</label>
                 <div class="col-sm-9">
                     <input type="password" id="password" th:field="*{password}" placeholder="Password" class="form-control">
                 </div>
                 <div class="text text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
             </div>
             <div class="form-group">
-                <label for="fullName" class="col-sm-3 control-label">Full Name</label>
+                <label for="fullName" class="col-sm-3 control-label" th:text="#{label.fullname}">Full Name</label>
                 <div class="col-sm-9">
                     <input type="text" id="fullName" th:field="*{fullName}" placeholder="Full Name" class="form-control" autofocus>
                 </div>
                 <div class="text text-danger" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></div>
             </div>
             <div class="form-group">
-                <label for="email" class="col-sm-3 control-label">Email* </label>
+                <label for="email" class="col-sm-3 control-label" th:text="#{label.email}">Email</label>*
                 <div class="col-sm-9">
                     <input type="email" id="email" th:field="*{email}" placeholder="Email" class="form-control" name= "email">
                 </div>
                 <div class="text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                 <div th:if="${emailExist}">
-                    <div class="text text-danger">Email is already used</div>
+                    <div class="text text-danger" th:text="#{label.email.existed}">Email is already used</div>
                 </div>
             </div>
             <div class="form-group">
-                <label for="birthDate" class="col-sm-3 control-label">Date of Birth*</label>
+                <label for="birthDate" class="col-sm-3 control-label" th:text="#{label.dob}">Date of Birth*</label>
                 <div class="col-sm-9">
                     <input type="date" id="birthDate" th:field="*{dob}" class="form-control">
                 </div>
                 <div class="text text-danger" th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></div>
             </div>
             <div class="form-group">
-                <label for="address" class="col-sm-3 control-label">Address</label>
+                <label for="address" class="col-sm-3 control-label" th:text="#{label.address}">Address</label>
                 <div class="col-sm-9">
                     <input type="text" id="address" th:field="*{address}" placeholder="Address" class="form-control" autofocus>
                 </div>
                 <div class="text text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
             </div>
             <div class="form-group">
-                <label for="phoneNumber" class="col-sm-3 control-label">Phone number </label>
+                <label for="phoneNumber" class="col-sm-3 control-label" th:text="#{label.phone}">Phone number </label>
                 <div class="col-sm-9">
                     <input type="text" maxlength="10" id="phoneNumber" th:field="*{phone}" placeholder="Phone number" class="form-control">
                 </div>
                 <div class="text text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-3">Gender</label>
+                <label class="control-label col-sm-3" th:text="#{label.gender}">Gender</label>
                 <div class="col-sm-6">
                     <div class="row">
                         <div class="col-sm-4">
                             <label class="radio-inline">
-                                <input type="radio" id="femaleRadio" th:field="*{gender}" value="1"> Female
+                                <input type="radio" id="femaleRadio" th:field="*{gender}" value="1"> <span th:text="#{label.gender.female}">Female</span>
                             </label>
                         </div>
                         <div class="col-sm-4">
                             <label class="radio-inline">
-                                <input type="radio" id="maleRadio" th:field="*{gender}" value="2"> Male
+                                <input type="radio" id="maleRadio" th:field="*{gender}" value="2"> <span th:text="#{label.gender.male}">male</span>
                             </label>
                         </div>
                         <div class="col-sm-4">
                             <label class="radio-inline">
-                                <input type="radio" id="notPreferRadio" th:field="*{gender}" value="3"> Not prefer to say
+                                <input type="radio" id="notPreferRadio" th:field="*{gender}" value="3"> <span th:text="#{label.gender.not.prefer}">Female</span>
                             </label>
                         </div>
                         <div class="text text-danger" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div>
@@ -92,10 +92,10 @@
             </div> <!-- /.form-group -->
             <div class="form-group">
                 <div class="col-sm-9 col-sm-offset-3">
-                    <span class="help-block">*Required fields</span>
+                    <span class="help-block" th:text="#{label.required}">*Required fields</span>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Register</button>
+            <button type="submit" class="btn btn-primary btn-block" th:text="#{label.register}">Register</button>
         </form> <!-- /form -->
     </div>
 </body>

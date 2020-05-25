@@ -5,7 +5,7 @@
       layout:decorate="~{fragments/master_layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Products</title>
+    <title th:text="#{label.products}">Products</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/vendor/noui/nouislider.min.css}">
 </head>
 <body>
@@ -17,55 +17,57 @@
                 <div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
                     <div class="leftbar p-r-20 p-r-0-sm">
                         <!--  -->
-                        <h4 class="m-text14 p-b-7">
+                        <h4 class="m-text14 p-b-7" th:text="#{label.categories}">
                             Categories
                         </h4>
 
                         <ul class="p-b-54">
                             <li class="p-t-4">
-                                <a th:href="@{/products/all}" class="s-text13 active1">
+                                <a th:href="@{/products/all}" class="s-text13 active1"
+                                   th:text="#{label.categories.all}">
                                     All
                                 </a>
                             </li>
 
                             <li th:each="category:${categories}" class="p-t-4">
-                                <a th:href="@{/products/category(categoryId=${category.id})}" th:text="${category.name}" class="s-text13">
+                                <a th:href="@{/products/category(categoryId=${category.id})}" th:text="${category.name}"
+                                   class="s-text13">
                                     Long sleeves
                                 </a>
                             </li>
                         </ul>
 
                         <!--  -->
-                        <h4 class="m-text14 p-b-32">
+                        <h4 class="m-text14 p-b-32" th:text="#{label.filter}">
                             Filters
                         </h4>
 
                         <div class="filter-price p-t-22 p-b-50 bo3">
-                            <div class="m-text15 p-b-17">
+                            <div class="m-text15 p-b-17" th:text="#{label.price}">
                                 Price
                             </div>
-
-                            <div class="wra-filter-bar">
-                                <div id="filter-bar"></div>
-                            </div>
-
                             <div class="flex-sb-m flex-w p-t-16">
+                                <div class="s-text3 p-t-10 p-b-10">
+                                    <span th:text="#{label.price.from}"></span>
+                                    <span th:text="#{label.price.currency}"></span>
+                                    <input type="number" id="value-lower"/>
+                                    <span th:text="#{label.price.to}"></span>
+                                    <span th:text="#{label.price.currency}"></span>
+                                    <input type="number" id="value-upper"/>
+                                </div>
+
                                 <div class="w-size11">
                                     <!-- Button -->
                                     <button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4">
-                                        Filter
+                                        <span th:text="#{label.btn.filter}"></span>
                                     </button>
-                                </div>
-
-                                <div class="s-text3 p-t-10 p-b-10">
-                                    Range: $<span id="value-lower">610</span> - $<span id="value-upper">980</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="search-product pos-relative bo4 of-hidden">
                             <input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search-product"
-                                   placeholder="Search Products...">
+                                   placeholder="Search Products..." th:placeholder="#{label.search.products}">
 
                             <button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
                                 <i class="fs-12 fa fa-search" aria-hidden="true"></i>
@@ -79,25 +81,24 @@
                     <div class="flex-sb-m flex-w p-b-35">
                         <div class="flex-w">
                             <div class="rs2-select2 bo4 of-hidden m-t-5 m-b-5 m-r-10">
-                                <select class="selection-2" name="sorting">
-                                    <option>Default Sorting</option>
-                                    <option>Popularity</option>
-                                    <option>Price: low to high</option>
-                                    <option>Price: high to low</option>
+                                <select class="sort" name="sorting">
+                                    <option th:text="#{label.sort.default}">Default Sorting</option>
+                                    <option id="sort-popularity" th:text="#{label.sort.popularity}">Popularity</option>
+                                    <option id="sort-price-low-to-high" th:text="#{label.sort.price.low.to.high}">Price: low to high</option>
+                                    <option th:text="#{label.sort.price.high.to.low}">Price: high to low</option>
                                 </select>
                             </div>
 
-                            <div class="rs2-select2 bo4 of-hidden m-t-5 m-b-5 m-r-10">
-                                <select class="selection-2" name="sorting">
-                                    <option>Price</option>
-                                    <option>$0.00 - $50.00</option>
-                                    <option>$50.00 - $100.00</option>
-                                    <option>$100.00 - $150.00</option>
-                                    <option>$150.00 - $200.00</option>
-                                    <option>$200.00+</option>
-
-                                </select>
-                            </div>
+<!--                            <div class="rs2-select2 bo4 of-hidden m-t-5 m-b-5 m-r-10">-->
+<!--                                <select class="sort-by-price" name="sorting">-->
+<!--                                    <option th:text="#{label.price}">Price</option>-->
+<!--                                    <option>$0.00 - $50.00</option>-->
+<!--                                    <option>$50.00 - $100.00</option>-->
+<!--                                    <option>$100.00 - $150.00</option>-->
+<!--                                    <option>$150.00 - $200.00</option>-->
+<!--                                    <option>$200.00+</option>-->
+<!--                                </select>-->
+<!--                            </div>-->
                         </div>
 
                         <span class="s-text8 p-t-5 p-b-5"
@@ -118,19 +119,21 @@
                                         <div class="block2-btn-addcart w-size1 trans-0-4">
                                             <!-- Button -->
                                             <button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-                                                Add to Cart
+                                                <span th:text="#{label.add.to.cart}"></span>
                                             </button>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="block2-txt p-t-20">
-                                    <a th:href="@{/products/detail(productId=${product.id})}" class="block2-name dis-block s-text3 p-b-5"
+                                    <a th:href="@{/products/detail(productId=${product.id})}"
+                                       class="block2-name dis-block s-text3 p-b-5"
                                        th:text="${product.name}">
                                         Herschel supply co 25l
                                     </a>
 
-                                    <span class="block2-price m-text6 p-r-5" th:text="'Price: ' + '$' + ${product.price}">
+                                    <span class="block2-price m-text6 p-r-5"
+                                          th:text="'Price: ' + '$' + ${product.price}">
 										        $75.00
                                     </span>
                                 </div>
@@ -139,27 +142,30 @@
 
 
                         <!-- Pagination -->
-<!--                        <div class="pagination flex-m flex-w p-t-26">-->
-<!--                            <a href="#" class="item-pagination flex-c-m trans-0-4 active-pagination">1</a>-->
-<!--                            <a href="#" class="item-pagination flex-c-m trans-0-4">2</a>-->
-<!--                        </div>-->
+                        <!--                        <div class="pagination flex-m flex-w p-t-26">-->
+                        <!--                            <a href="#" class="item-pagination flex-c-m trans-0-4 active-pagination">1</a>-->
+                        <!--                            <a href="#" class="item-pagination flex-c-m trans-0-4">2</a>-->
+                        <!--                        </div>-->
                     </div>
                     <div class="pagination flex-m flex-w p-t-26">
                             <span th:if="${allProducts.hasPrevious()}">
-                                <a class="item-pagination flex-c-m trans-0-4" th:href="@{/products/all(page=${allProducts.number-1})}">
+                                <a class="item-pagination flex-c-m trans-0-4"
+                                   th:href="@{/products/all(page=${allProducts.number-1})}">
                                     <
                                 </a>
                             </span>
                         <th:block th:each="i: ${#numbers.sequence(0, allProducts.totalPages - 1)}">
-                                <span  th:if="${allProducts.number == i}" >
-                                    <a class="item-pagination flex-c-m trans-0-4 active-pagination" th:href="@{/products/all(page=${i})}">[[${i}+1]]</a>
+                                <span th:if="${allProducts.number == i}">
+                                    <a class="item-pagination flex-c-m trans-0-4 active-pagination"
+                                       th:href="@{/products/all(page=${i})}">[[${i}+1]]</a>
                                 </span>
                             <span th:unless="${allProducts.number == i}">
                                     <a class="item-pagination flex-c-m trans-0-4" th:href="@{/products/all(page=${i})}">[[${i}+1]]</a>
                                 </span>
                         </th:block>
                         <span th:if="${allProducts.hasNext()}">
-                                <a class="item-pagination flex-c-m trans-0-4" th:href="@{/products/all(page=${allProducts.number+1})}">
+                                <a class="item-pagination flex-c-m trans-0-4"
+                                   th:href="@{/products/all(page=${allProducts.number+1})}">
                                     >
                                 </a>
                         </span>

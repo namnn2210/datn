@@ -1,7 +1,7 @@
 package ginp14.ngongocnam.datn.controller;
 
-import ginp14.project3.model.*;
-import ginp14.project3.service.*;
+import ginp14.ngongocnam.datn.model.*;
+import ginp14.ngongocnam.datn.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -30,7 +30,7 @@ public class AdminController {
     private CategoryService categoryService;
 
     @Autowired
-    private TeamService teamService;
+    private TypeService typeService;
 
     @Autowired
     private RoleService roleService;
@@ -70,7 +70,7 @@ public class AdminController {
 
     @GetMapping("/listTeams")
     public String showListTeams(Model model, @PageableDefault(size = 5) Pageable pageable){
-        model.addAttribute("teams", teamService.findAll(pageable));
+        model.addAttribute("teams", typeService.findAll(pageable));
         return "views/admin/list_teams";
     }
 
@@ -92,7 +92,7 @@ public class AdminController {
     @GetMapping("/addProduct")
     public String showAddProductForm(Model model) {
         Product product = new Product();
-        model.addAttribute("teams", teamService.findAll());
+        model.addAttribute("teams", typeService.findAll());
         model.addAttribute("categories", categoryService.findAll());
         model.addAttribute("product", product);
         return "views/admin/add_product";
@@ -102,7 +102,7 @@ public class AdminController {
     public String showEditProductForm(@RequestParam("productId") int id, Model model) {
         Product product = productService.findById(id);
         categories = categoryService.findAll();
-        List<Team> teams = teamService.findAll();
+        List<Type> teams = typeService.findAll();
         model.addAttribute("teams", teams);
         model.addAttribute("categories", categories);
         model.addAttribute("product", product);
@@ -141,19 +141,19 @@ public class AdminController {
         return "views/admin/add_category";
     }
 
-    @GetMapping("/addTeam")
-    public String showAddTeamForm(Model model) {
-        Team team = new Team();
-        model.addAttribute("team",team);
-        return "views/admin/add_team";
-    }
+//    @GetMapping("/addTeam")
+//    public String showAddTeamForm(Model model) {
+//        Type type = new Type();
+//        model.addAttribute("type",type);
+//        return "views/admin/add_team";
+//    }
 
-    @GetMapping("/editTeam")
-    public String showEditTeamForm(@RequestParam("teamId") int id, Model model) {
-        Team team = teamService.findById(id);
-        model.addAttribute("team", team);
-        return "views/admin/add_team";
-    }
+//    @GetMapping("/editTeam")
+//    public String showEditTeamForm(@RequestParam("teamId") int id, Model model) {
+//        Type type = typeService.findById(id);
+//        model.addAttribute("type", type);
+//        return "views/admin/add_team";
+//    }
 
     @GetMapping("/addOrder")
     public String showAddOrderForm(Model model) {

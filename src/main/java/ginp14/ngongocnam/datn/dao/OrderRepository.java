@@ -1,6 +1,6 @@
 package ginp14.ngongocnam.datn.dao;
 
-import ginp14.project3.model.Order;
+import ginp14.ngongocnam.datn.model.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

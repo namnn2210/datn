@@ -1,7 +1,7 @@
 package ginp14.ngongocnam.datn.service;
 
-import ginp14.project3.dao.ConfirmationTokenRepository;
-import ginp14.project3.model.ConfirmationToken;
+import ginp14.ngongocnam.datn.dao.ConfirmationTokenRepository;
+import ginp14.ngongocnam.datn.model.ConfirmationToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

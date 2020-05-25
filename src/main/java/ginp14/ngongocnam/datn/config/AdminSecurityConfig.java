@@ -1,6 +1,6 @@
 package ginp14.ngongocnam.datn.config;
 
-import ginp14.project3.service.UserServiceImpl;
+import ginp14.ngongocnam.datn.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

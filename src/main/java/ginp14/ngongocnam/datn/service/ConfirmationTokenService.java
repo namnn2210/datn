@@ -1,6 +1,6 @@
 package ginp14.ngongocnam.datn.service;
 
-import ginp14.project3.model.ConfirmationToken;
+import ginp14.ngongocnam.datn.model.ConfirmationToken;
 
 public interface ConfirmationTokenService {
     void save(ConfirmationToken confirmationToken);

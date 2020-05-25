@@ -1,6 +1,6 @@
 package ginp14.ngongocnam.datn.dao;
 
-import ginp14.project3.model.Product;
+import ginp14.ngongocnam.datn.model.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,7 +12,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     Product findById(int id);
     List<Product> findAllByCategoryId(int id);
     Page<Product> findAllByCategoryId(int id, Pageable pageable);
-    List<Product> findAllByTeamId(int id);
+//    List<Product> findAllByTeamId(int id);
 
     Page<Product> findAllByStatus(boolean status, Pageable pageable);
     List<Product> findAllByStatus(boolean status);

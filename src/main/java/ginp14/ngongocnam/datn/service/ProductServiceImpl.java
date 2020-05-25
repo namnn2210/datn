@@ -1,7 +1,7 @@
 package ginp14.ngongocnam.datn.service;
 
-import ginp14.project3.dao.ProductRepository;
-import ginp14.project3.model.Product;
+import ginp14.ngongocnam.datn.dao.ProductRepository;
+import ginp14.ngongocnam.datn.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -45,10 +45,10 @@ public class ProductServiceImpl implements ProductService{
         productRepository.save(product);
     }
 
-    @Override
-    public List<Product> findAllByTeamId(int id) {
-        return productRepository.findAllByTeamId(id);
-    }
+//    @Override
+//    public List<Product> findAllByTeamId(int id) {
+//        return productRepository.findAllByTeamId(id);
+//    }
 
     @Override
     public Page<Product> findAllByStatus(boolean status, Pageable pageable) {

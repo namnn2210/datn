@@ -1,6 +1,6 @@
 package ginp14.ngongocnam.datn.service;
 
-import ginp14.project3.model.User;
+import ginp14.ngongocnam.datn.model.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;

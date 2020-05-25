@@ -5,7 +5,7 @@
       layout:decorate="~{fragments/master_layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title th:text="#{label.login}">Login</title>
     <link rel="stylesheet" th:href="@{/css/custom/login.css}"/>
 </head>
 <body>
@@ -18,22 +18,22 @@
                     <img th:src="@{/images/logo.png}" id="icon" alt="User Icon" />
                 </div>
                 <div th:if="${param.error}" class="text text-danger">
-                    Invalid username or password or your account is not activated.
+                    <span th:text="#{label.invalid.username}">Invalid username or password or your account is not activated.</span>
                 </div>
                 <div th:if="${param.logout}">
                     <div class="alert alert-info">
-                        You have been logged out.
+                        <span th:text="#{label.logged.out}">You have been logged out.</span>
                     </div>
                 </div>
                 <!-- Login Form -->
                 <form th:action="@{/login}" method="post">
                     <input type="text" id="login" class="fadeIn second" name="username" placeholder="Username">
                     <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
-                    <input type="submit" class="fadeIn fourth" value="Log In">
+                    <input type="submit" class="fadeIn fourth" th:value="#{label.login}" value="Log In">
                 </form>
 
                 <div id="formFooter">
-                    <span>Don't have an account? <a class="underlineHover" th:href="@{/register}">Click here to register.</a></span>
+                    <span th:text="#{label.dont.have.account}">Don't have an account?</span> <a th:text="#{label.click.register}" class="underlineHover" th:href="@{/register}">Click here to register.</a>
                 </div>
             </div>
         </div>

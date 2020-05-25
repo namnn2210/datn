@@ -1,6 +1,6 @@
 package ginp14.ngongocnam.datn.service;
 
-import ginp14.project3.config.SomeClass;
+import ginp14.ngongocnam.datn.config.SomeClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class EmailServiceImpl implements EmailService {
     private SomeClass someClass;
 
     final String username = "ngongocnam22101997@gmail.com";
-    final String password = "bjkxoyabqyqmrpat";
+    final String password = "wnedacfibwmshnpe";
 
     @Override
     public void sendEmail(String email, String subject, String templateFileName,Context context) throws MessagingException {

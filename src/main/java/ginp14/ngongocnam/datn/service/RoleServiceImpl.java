@@ -1,7 +1,7 @@
 package ginp14.ngongocnam.datn.service;
 
-import ginp14.project3.dao.RoleRepository;
-import ginp14.project3.model.Role;
+import ginp14.ngongocnam.datn.dao.RoleRepository;
+import ginp14.ngongocnam.datn.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

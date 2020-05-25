@@ -1,9 +1,9 @@
 package ginp14.ngongocnam.datn.controller;
 
-import ginp14.project3.model.Category;
-import ginp14.project3.model.Product;
-import ginp14.project3.service.CategoryService;
-import ginp14.project3.service.ProductService;
+import ginp14.ngongocnam.datn.model.Category;
+import ginp14.ngongocnam.datn.model.Product;
+import ginp14.ngongocnam.datn.service.CategoryService;
+import ginp14.ngongocnam.datn.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

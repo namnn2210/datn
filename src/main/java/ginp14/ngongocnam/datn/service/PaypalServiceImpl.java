@@ -3,8 +3,8 @@ package ginp14.ngongocnam.datn.service;
 import com.paypal.api.payments.*;
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.PayPalRESTException;
-import ginp14.project3.config.PaypalPaymentIntent;
-import ginp14.project3.config.PaypalPaymentMethod;
+import ginp14.ngongocnam.datn.config.PaypalPaymentIntent;
+import ginp14.ngongocnam.datn.config.PaypalPaymentMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PaypalServiceImpl implements PaypalService{
+public class PaypalServiceImpl implements PaypalService {
 
     @Autowired
     private APIContext apiContext;

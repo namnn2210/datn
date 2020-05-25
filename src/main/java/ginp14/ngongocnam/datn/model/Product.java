@@ -1,10 +1,12 @@
 package ginp14.ngongocnam.datn.model;
+
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "product")
@@ -19,12 +21,22 @@ public class Product {
     @NotBlank(message = "Product name cannot be blank")
     private String name;
 
-    @Column(name = "product_url")
+    @Column(name = "product_images_url")
     private String url;
 
     @Column(name = "product_price", columnDefinition = "double")
     @DecimalMin(value = "1", message = "Min price is $1")
     private double price;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "sold")
+    private int sold;
+
+    @Column(name = "discount")
+    private int discount;
+
 
     @Column(name = "status", columnDefinition = "tinyint(1)")
     private boolean status;
@@ -34,8 +46,8 @@ public class Product {
     private Category category;
 
     @ManyToOne
-    @JoinColumn(name = "team_id", nullable = false)
-    private Team team;
+    @JoinColumn(name = "type_id", nullable = false)
+    private Type type;
 
     @Column(name = "created_at")
     @UpdateTimestamp
@@ -49,13 +61,17 @@ public class Product {
     public Product() {
     }
 
-    public Product(@NotBlank(message = "Product name cannot be blank") String name, String url, @DecimalMin(value = "0.5", message = "Min price is $0.5") double price, boolean status, Category category, Team team, Timestamp created_at, Timestamp updated_at) {
+    public Product(int id, @NotBlank(message = "Product name cannot be blank") String name, String url, @DecimalMin(value = "1", message = "Min price is $1") double price, String description, int sold, int discount, boolean status, Category category, Type type, Timestamp created_at, Timestamp updated_at) {
+        this.id = id;
         this.name = name;
         this.url = url;
         this.price = price;
+        this.description = description;
+        this.sold = sold;
+        this.discount = discount;
         this.status = status;
         this.category = category;
-        this.team = team;
+        this.type = type;
         this.created_at = created_at;
         this.updated_at = updated_at;
     }
@@ -108,12 +124,12 @@ public class Product {
         this.category = category;
     }
 
-    public Team getTeam() {
-        return team;
+    public Type getType() {
+        return type;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public Timestamp getCreated_at() {
@@ -130,5 +146,29 @@ public class Product {
 
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getSold() {
+        return sold;
+    }
+
+    public void setSold(int sold) {
+        this.sold = sold;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
     }
 }

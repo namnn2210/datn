@@ -1,6 +1,6 @@
 package ginp14.ngongocnam.datn.service;
 
-import ginp14.project3.model.Product;
+import ginp14.ngongocnam.datn.model.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -13,7 +13,7 @@ public interface ProductService {
     List<Product> findAllByCategoryId(int id);
     Page<Product> findAllByCategoryId(int id, Pageable pageable);
     void save(Product product);
-    List<Product> findAllByTeamId(int id);
+//    List<Product> findAllByTeamId(int id);
     Page<Product> findAllByStatus(boolean status, Pageable pageable);
     List<Product> findAllByStatus(boolean status);
     List<Product> findAllByCategoryIdAndStatus(int id, boolean status);

@@ -1,9 +1,9 @@
 package ginp14.ngongocnam.datn.controller;
 
-import ginp14.project3.model.Product;
-import ginp14.project3.model.Team;
-import ginp14.project3.service.ProductService;
-import ginp14.project3.service.TeamService;
+import ginp14.ngongocnam.datn.model.Product;
+import ginp14.ngongocnam.datn.model.Type;
+import ginp14.ngongocnam.datn.service.ProductService;
+import ginp14.ngongocnam.datn.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -19,32 +19,32 @@ import java.util.List;
 public class TeamController {
 
     @Autowired
-    private TeamService teamService;
+    private TypeService typeService;
 
     @Autowired
     private ProductService productService;
 
-    @PostMapping("/addTeam")
-    public String addTeam(@Valid @ModelAttribute("team") Team team, BindingResult result) {
-        if (result.hasErrors()) {
-            return "views/admin/add_team";
-        }
-        team.setStatus(true);
-        teamService.save(team);
-        return "redirect:/admin/listTeams";
-    }
-
-    @PostMapping("/deleteTeam")
-    public @ResponseBody
-    String deleteTeam(@RequestBody int teamId) {
-        Team team = teamService.findById(teamId);
-        List<Product> products = productService.findAllByTeamId(teamId);
-        for (Product product:products) {
-            product.setStatus(false);
-            productService.save(product);
-        }
-        team.setStatus(false);
-        teamService.save(team);
-        return "false";
-    }
+//    @PostMapping("/addTeam")
+//    public String addTeam(@Valid @ModelAttribute("team") Type type, BindingResult result) {
+//        if (result.hasErrors()) {
+//            return "views/admin/add_team";
+//        }
+//        type.setStatus(true);
+//        typeService.save(type);
+//        return "redirect:/admin/listTeams";
+//    }
+//
+//    @PostMapping("/deleteTeam")
+//    public @ResponseBody
+//    String deleteTeam(@RequestBody int teamId) {
+//        Type type = typeService.findById(teamId);
+//        List<Product> products = productService.findAllByTeamId(teamId);
+//        for (Product product:products) {
+//            product.setStatus(false);
+//            productService.save(product);
+//        }
+//        type.setStatus(false);
+//        typeService.save(type);
+//        return "false";
+//    }
 }

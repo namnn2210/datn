@@ -1,11 +1,17 @@
 package ginp14.ngongocnam.datn.model;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 import java.util.UUID;
 
 @Entity
 public class ConfirmationToken {
+    private static final int EXPIRATION = 60 * 5;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "token_id")
@@ -17,6 +23,8 @@ public class ConfirmationToken {
     @Temporal(TemporalType.TIMESTAMP)
     private Date created_at;
 
+    private Date expired_at;
+
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
@@ -24,10 +32,22 @@ public class ConfirmationToken {
     public ConfirmationToken() {
     }
 
+    private String generateToken() {
+        return new DecimalFormat("000000").format(new Random().nextInt(999999));
+    }
+
+    private Date calculateExpiryDate(int expiryTimeInSeconds) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Timestamp(cal.getTime().getTime()));
+        cal.add(Calendar.SECOND, expiryTimeInSeconds);
+        return new Date(cal.getTime().getTime());
+    }
+
     public ConfirmationToken(User user) {
         this.user = user;
         created_at = new Date();
-        confirmationToken = UUID.randomUUID().toString();
+        confirmationToken = generateToken();
+        expired_at = calculateExpiryDate(EXPIRATION);
     }
 
     public long getTokenID() {
@@ -60,5 +80,13 @@ public class ConfirmationToken {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Date getExpired_at() {
+        return expired_at;
+    }
+
+    public void setExpired_at(Date expired_at) {
+        this.expired_at = expired_at;
     }
 }

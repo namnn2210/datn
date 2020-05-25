@@ -2,8 +2,8 @@ package ginp14.ngongocnam.datn.service;
 
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
-import ginp14.project3.config.PaypalPaymentIntent;
-import ginp14.project3.config.PaypalPaymentMethod;
+import ginp14.ngongocnam.datn.config.PaypalPaymentIntent;
+import ginp14.ngongocnam.datn.config.PaypalPaymentMethod;
 
 public interface PaypalService {
     Payment createPayment(Double totalPrice, String currency, PaypalPaymentMethod method, PaypalPaymentIntent intent, String cancelUrl, String successUrl) throws PayPalRESTException;

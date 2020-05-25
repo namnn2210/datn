@@ -36,7 +36,7 @@ public class User implements UserDetails {
     private String fullName;
 
     @Column(name = "DOB")
-    @NotBlank(message = "Please select date of birth")
+//    @NotBlank(message = "Please select date of birth")
     private String dob;
 
     @Column(name = "gender")
@@ -47,7 +47,7 @@ public class User implements UserDetails {
     private String email;
 
     @Column(name = "address")
-    @NotBlank(message = "Address cannot be empty")
+//    @NotBlank(message = "Address cannot be empty")
     private String address;
 
     @Column(name = "phone")

@@ -5,7 +5,7 @@
       layout:decorate="~{fragments/master_layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="#{label.order.history}">Title</title>
     <link rel="stylesheet" th:href="@{/css/custom/order_history.css}"/>
 </head>
 <body>
@@ -15,17 +15,17 @@
             <div class="col">
                 <div class="card shadow">
                     <div class="card-header border-0">
-                        <h3 class="mb-0">Order History</h3>
+                        <h3 class="mb-0" th:text="#{label.order.history}">Order History</h3>
                     </div>
                     <div class="table-responsive">
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                             <tr>
-                                <th scope="col">Order #</th>
-                                <th scope="col">Order Date</th>
-                                <th scope="col">Total Price</th>
-                                <th scope="col">Products</th>
-                                <th scope="col">Status</th>
+                                <th scope="col" th:text="#{label.order.no}">Order #</th>
+                                <th scope="col" th:text="#{label.order.date}">Order Date</th>
+                                <th scope="col" th:text="#{label.order.total.price}">Total Price</th>
+                                <th scope="col" th:text="#{label.order.products}">Products</th>
+                                <th scope="col" th:text="#{label.order.status}">Status</th>
                             </tr>
                             </thead>
                             <tbody th:if="${orders.size() > 0}" th:each="order:${orders}">
@@ -39,10 +39,10 @@
                                     <table class="table table-borderless">
                                         <thead>
                                         <tr>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Size</th>
-                                            <th scope="col">Quantity</th>
-                                            <th scope="cold">Unit Price</th>
+                                            <th scope="col" th:text="#{label.order.products.name}">Name</th>
+                                            <th scope="col" th:text="#{label.order.products.size}">Size</th>
+                                            <th scope="col" th:text="#{label.order.products.quantity}">Quantity</th>
+                                            <th scope="cold" th:text="#{label.order.products.unit.price}">Unit Price</th>
                                         </tr>
                                         </thead>
                                         <tr th:each="product:${maps.get(order.id)}">
@@ -54,8 +54,8 @@
                                     </table>
                                 </td>
                                 <td>
-                                    <span th:if="${order.status} == true">Done</span>
-                                    <span th:if="${order.status} == false">Pending</span>
+                                    <span th:if="${order.status} == true" th:text="#{label.order.products.status.done}">Done</span>
+                                    <span th:if="${order.status} == false" th:text="#{label.order.products.status.pending}">Pending</span>
                                 </td>
                             </tr>
                             </tbody>

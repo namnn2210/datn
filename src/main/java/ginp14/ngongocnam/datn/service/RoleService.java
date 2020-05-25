@@ -1,6 +1,6 @@
 package ginp14.ngongocnam.datn.service;
 
-import ginp14.project3.model.Role;
+import ginp14.ngongocnam.datn.model.Role;
 
 import java.util.List;
 

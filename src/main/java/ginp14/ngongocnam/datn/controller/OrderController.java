@@ -1,8 +1,8 @@
 package ginp14.ngongocnam.datn.controller;
 
-import ginp14.project3.model.Order;
-import ginp14.project3.service.OrderDetailService;
-import ginp14.project3.service.OrderService;
+import ginp14.ngongocnam.datn.model.Order;
+import ginp14.ngongocnam.datn.service.OrderDetailService;
+import ginp14.ngongocnam.datn.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;

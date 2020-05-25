@@ -1,11 +1,11 @@
 package ginp14.ngongocnam.datn.controller;
 
 import com.cloudinary.utils.ObjectUtils;
-import ginp14.project3.config.CloudinaryConfig;
-import ginp14.project3.model.*;
-import ginp14.project3.service.CategoryService;
-import ginp14.project3.service.ProductService;
-import ginp14.project3.service.TeamService;
+import ginp14.ngongocnam.datn.config.CloudinaryConfig;
+import ginp14.ngongocnam.datn.model.*;
+import ginp14.ngongocnam.datn.service.CategoryService;
+import ginp14.ngongocnam.datn.service.ProductService;
+import ginp14.ngongocnam.datn.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -33,7 +33,7 @@ public class ProductController {
     @Autowired
     private CategoryService categoryService;
     @Autowired
-    private TeamService teamService;
+    private TypeService typeService;
     @Autowired
     private CloudinaryConfig cloudinary;
 
@@ -41,7 +41,7 @@ public class ProductController {
     public String saveProduct(@Valid @ModelAttribute("product") Product product, BindingResult result, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes, Model model) {
         if (result.hasErrors()) {
             List<Category> categories = categoryService.findAll();
-            List<Team> teams = teamService.findAll();
+            List<Type> teams = typeService.findAll();
             model.addAttribute("teams",teams);
             model.addAttribute("categories",categories);
             return "views/admin/add_product";
@@ -50,7 +50,7 @@ public class ProductController {
             if(file.isEmpty()) {
                 model.addAttribute("message","No file uploaded. Product must have an image");
                 List<Category> categories = categoryService.findAll();
-                List<Team> teams = teamService.findAll();
+                List<Type> teams = typeService.findAll();
                 model.addAttribute("teams",teams);
                 model.addAttribute("categories",categories);
                 return "views/admin/add_product";
@@ -82,10 +82,13 @@ public class ProductController {
     }
 
     @GetMapping("/all")
-    public String showAllProducts(Model model, @PageableDefault(size = 6) Pageable pageable) {
+    public String showAllProducts(Model model, @PageableDefault(size = 9) Pageable pageable) {
         model.addAttribute("allProducts", productService.findAllByStatus(true,pageable));
+        model.addAttribute("clothing", typeService.findAllByCategoryId(1));
+        model.addAttribute("activewear", typeService.findAllByCategoryId(2));
+        model.addAttribute("accessories", typeService.findAllByCategoryId(3));
         model.addAttribute("categories", categoryService.findAllByStatus(true));
-        return "views/product/allProducts";
+        return "template_v2/views/product/allProducts";
     }
 
     @GetMapping("/detail")
@@ -93,8 +96,10 @@ public class ProductController {
         Product product = productService.findById(productId);
         model.addAttribute("product", product);
         model.addAttribute("products", productService.findAllByCategoryIdAndStatus(product.getCategory().getId(),true));
-        model.addAttribute("categories", categoryService.findAllByStatus(true));
-        return "views/product/product_detail";
+        model.addAttribute("clothing", typeService.findAllByCategoryId(1));
+        model.addAttribute("activewear", typeService.findAllByCategoryId(2));
+        model.addAttribute("accessories", typeService.findAllByCategoryId(3));
+        return "template_v2/views/product/product_detail";
     }
 
     @GetMapping("/category")

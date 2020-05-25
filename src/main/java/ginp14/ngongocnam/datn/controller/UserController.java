@@ -1,8 +1,9 @@
 package ginp14.ngongocnam.datn.controller;
 
-import ginp14.project3.model.*;
-import ginp14.project3.service.*;
+import ginp14.ngongocnam.datn.model.*;
+import ginp14.ngongocnam.datn.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +18,7 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -44,18 +46,27 @@ public class UserController {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private TypeService typeService;
+
+    @Autowired
+    private ApplicationEventPublisher eventPublisher;
+
     @GetMapping("/login")
     public String showLogin(Model model) {
         User user = new User();
+        model.addAttribute("clothing", typeService.findAllByCategoryId(1));
+        model.addAttribute("activewear", typeService.findAllByCategoryId(2));
+        model.addAttribute("accessories", typeService.findAllByCategoryId(3));
         model.addAttribute("categories", categoryService.findAllByStatus(true));
         model.addAttribute("user", user);
-        return "views/user/login";
+        return "template_v2/views/user/login";
     }
 
     @GetMapping("/adminLogin")
     public String showAdminLogin(Model model) {
         User user = new User();
-        model.addAttribute("user",user);
+        model.addAttribute("user", user);
         return "views/admin/login";
     }
 
@@ -68,16 +79,32 @@ public class UserController {
     }
 
     @PostMapping("/userRegisterProcess")
-    public String userRegisterProcess(@Valid @ModelAttribute("user") User user, BindingResult result, Model model, HttpServletRequest request) {
+    public String userRegisterProcess(@RequestParam("cfpassword") String cfpassword, @Valid @ModelAttribute("user") User user, BindingResult result, Model model, HttpServletRequest request) {
         if (result.hasErrors()) {
-            return "views/user/register";
+            model.addAttribute("clothing", typeService.findAllByCategoryId(1));
+            model.addAttribute("activewear", typeService.findAllByCategoryId(2));
+            model.addAttribute("accessories", typeService.findAllByCategoryId(3));
+            return "template_v2/views/user/login";
+        }
+        if(!cfpassword.equals(user.getPassword())) {
+            model.addAttribute("passwordNotMatch", true);
+            model.addAttribute("clothing", typeService.findAllByCategoryId(1));
+            model.addAttribute("activewear", typeService.findAllByCategoryId(2));
+            model.addAttribute("accessories", typeService.findAllByCategoryId(3));
+            return "template_v2/views/user/login";
         }
         if (userService.isUserExisted(user.getUsername())) {
             model.addAttribute("usernameExist", true);
-            return "views/user/register";
+            model.addAttribute("clothing", typeService.findAllByCategoryId(1));
+            model.addAttribute("activewear", typeService.findAllByCategoryId(2));
+            model.addAttribute("accessories", typeService.findAllByCategoryId(3));
+            return "template_v2/views/user/login";
         } else if (userService.isEmailExisted(user.getEmail())) {
+            model.addAttribute("clothing", typeService.findAllByCategoryId(1));
+            model.addAttribute("activewear", typeService.findAllByCategoryId(2));
+            model.addAttribute("accessories", typeService.findAllByCategoryId(3));
             model.addAttribute("emailExist", true);
-            return "views/user/register";
+            return "template_v2/views/user/login";
         } else {
             if (user.getRole() == null) {
                 Role role = roleService.findById(1);
@@ -90,10 +117,9 @@ public class UserController {
                 String subject = "KitStore Registration Confirmation";
                 String templateFileName = "views/user/confirm";
                 Context context = new Context();
-                context.setVariable("token",confirmationToken.getConfirmationToken());
-                emailService.sendEmail(user.getEmail(),subject,templateFileName,context);
-            }
-            catch (MessagingException ex) {
+                context.setVariable("token", confirmationToken.getConfirmationToken());
+                emailService.sendEmail(user.getEmail(), subject, templateFileName, context);
+            } catch (MessagingException ex) {
                 ex.printStackTrace();
             }
         }
@@ -166,7 +192,7 @@ public class UserController {
         }
         model.addAttribute("orders", orders);
         model.addAttribute("maps", maps);
-        model.addAttribute("categories",categoryService.findAllByStatus(true));
+        model.addAttribute("categories", categoryService.findAllByStatus(true));
         return "views/user/order_history";
     }
 
@@ -174,12 +200,16 @@ public class UserController {
     public String showConfirmAccountPage(@RequestParam String token, Model model) {
         ConfirmationToken confirmToken = confirmationTokenService.findByConfirmationToken(token);
         if (token != null) {
-            User user = userService.findByUsername(confirmToken.getUser().getUsername());
-            user.setStatus(true);
-            userService.saveUser(user);
-        }
-        else {
-            model.addAttribute("error",true);
+            if (new Date().after(confirmToken.getExpired_at())) {
+                model.addAttribute("expired", true);
+                return "views/other/register_success";
+            } else {
+                User user = userService.findByUsername(confirmToken.getUser().getUsername());
+                user.setStatus(true);
+                userService.saveUser(user);
+            }
+        } else {
+            model.addAttribute("error", true);
             return "views/other/register_success";
         }
         return "redirect:/homepage";
@@ -187,13 +217,13 @@ public class UserController {
 
     @GetMapping("/verifyError")
     public String showVerifyErrorForm(Model model) {
-        model.addAttribute("categories",categoryService.findAllByStatus(true));
+        model.addAttribute("categories", categoryService.findAllByStatus(true));
         return "views/other/verify_error";
     }
 
     @GetMapping("/registerSuccess")
     public String showSuccessForm(Model model) {
-        model.addAttribute("categories",categoryService.findAllByStatus(true));
+        model.addAttribute("categories", categoryService.findAllByStatus(true));
         return "views/other/register_success";
     }
 }

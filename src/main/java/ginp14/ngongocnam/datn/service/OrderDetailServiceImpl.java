@@ -1,7 +1,7 @@
 package ginp14.ngongocnam.datn.service;
 
-import ginp14.project3.dao.OrderDetailRepository;
-import ginp14.project3.model.OrderDetail;
+import ginp14.ngongocnam.datn.dao.OrderDetailRepository;
+import ginp14.ngongocnam.datn.model.OrderDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
