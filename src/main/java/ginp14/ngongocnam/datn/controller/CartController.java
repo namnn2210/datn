@@ -56,7 +56,7 @@ public class CartController {
             return "redirect:/cart/noitem";
         }
         model.addAttribute("categories", categoryService.findAll());
-        return "views/product/cart";
+        return "template_v2/views/product/cart";
     }
 
     @GetMapping("/noitem")

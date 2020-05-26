@@ -84,56 +84,28 @@
                                 </div>
                             </li>
                             <li class="lh-50">
-                                <a href="checkout.html" class="prl-20 text-uppercase">check out</a>
+                                <a th:href="@{/cart/detail}" class="prl-20 text-uppercase">check out</a>
                             </li>
                             <li class="cart-link lh-50">
                                 <a href="#" class="pl-20">
                                     <i class="zmdi zmdi-shopping-cart"></i>
-                                    <span th:if="${session.cart} == null">0</span>
-                                    <span th:if="${session.cart} != null" th:text="${session.cart.getCartItem().size()}">0</span>
+                                    <span class="cart-quantity" th:if="${session.cart} == null">0</span>
+                                    <span class="cart-quantity" th:if="${session.cart} != null" th:text="${session.cart.getCartItem().size()}">0</span>
                                 </a>
                                 <div th:if="${session.cart} != null" class="mini-cart-inner header-top-down p-20">
                                     <ul class="cart-list">
-                                        <li class="p-10 mb-15">
+                                        <li th:each="cartItem:${session.cart.getCartItem()}" class="p-10 mb-15 header-cart-item">
                                             <a href="#" class="product-image">
-                                                <img src="images/shop/cart/1.jpg"
-                                                     th:src="@{template_v2/images/shop/cart/1.jpg}" alt="">
+                                                <img width="55" height="63" src="images/shop/cart/1.jpg"
+                                                     th:src="@{${cartItem.product.url.split('&')[0]}}" alt="">
                                             </a>
                                             <div class="product-details ml-10">
                                                 <a href="#" class="remove">
                                                     <i class="zmdi zmdi-close"></i>
                                                 </a>
-                                                <a href="#" class="product-name mb-10">Men’s Black T..</a>
-                                                <span class="selected-color">Color:  Black</span>
-                                                <span class="selected-size">$80.00</span>
-                                            </div>
-                                        </li>
-                                        <li class="p-10 mb-15">
-                                            <a href="#" class="product-image">
-                                                <img src="images/shop/cart/2.jpg"
-                                                     th:src="@{template_v2/images/shop/cart/2.jpg}" alt="">
-                                            </a>
-                                            <div class="product-details ml-10">
-                                                <a href="#" class="remove">
-                                                    <i class="zmdi zmdi-close"></i>
-                                                </a>
-                                                <a href="#" class="product-name mb-10">Men’s Black T..</a>
-                                                <span class="selected-color">Color:  white</span>
-                                                <span class="selected-size">$65.00</span>
-                                            </div>
-                                        </li>
-                                        <li class="p-10 mb-15">
-                                            <a href="#" class="product-image">
-                                                <img src="images/shop/cart/3.jpg"
-                                                     th:src="@{template_v2/images/shop/cart/3.jpg}" alt="">
-                                            </a>
-                                            <div class="product-details ml-10">
-                                                <a href="#" class="remove">
-                                                    <i class="zmdi zmdi-close"></i>
-                                                </a>
-                                                <a href="#" class="product-name mb-10">Men’s Black T..</a>
-                                                <span class="selected-color">Color:  Red</span>
-                                                <span class="selected-size">$100.00</span>
+                                                <a th:text="${cartItem.product.name}" href="#" class="product-name mb-10">Men’s Black T..</a>
+                                                <span th:text="'Size: ' + ${cartItem.size}" class="selected-color">Color:  Black</span>
+                                                <span th:text="${cartItem.quantity} + ' x ' + ${cartItem.product.price}" class="selected-size">$80.00</span>
                                             </div>
                                         </li>
                                     </ul>
@@ -144,15 +116,15 @@
                                             <span class="ml-35">$190.98</span>
                                         </p>
                                         <p class="buttons m-0">
-                                            <a href="#" class="button extra-small">
+                                            <a th:href="@{/cart/detail}" class="button extra-small">
                                                 <span>Checkout</span>
                                             </a>
                                         </p>
                                     </div>
                                 </div>
-                                <div class="mini-cart-inner header-top-down p-20">
+                                <div th:if="${session.cart} == null" class="mini-cart-inner header-top-down p-20">
                                     <ul class="cart-list">
-                                        <li><span th:text="#{label.no.item.in.cart}">No item in cart</span></li>
+                                        <li class="p-10 mb-15 header-cart-item"><span th:text="#{label.no.item.in.cart}">No item in cart</span></li>
                                     </ul>
                                 </div>
                             </li>

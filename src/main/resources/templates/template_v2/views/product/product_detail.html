@@ -5,6 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .size-active{
+            background:#01a6a9 none repeat scroll 0 0;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <div layout:fragment="content">
@@ -15,6 +21,7 @@
                         <div class="single-product-image">
                             <div id="product-img-content">
                                 <div id="my-tab-content" class="tab-content mb-30">
+                                    <input type="hidden" id="product-id" th:value="${product.id}">
                                     <div class="tab-pane b-img active" id="view1">
                                         <a th:href="${product.url.split('&')[0]}" class="venobox vbox-item" href="images/product/product-details/1.jpg" data-gall="gallery" title=""><img width="470" height="576" th:src="${product.url.split('&')[0]}" src="images/product/product-details/1.jpg" alt=""></a>
                                     </div>
@@ -58,19 +65,19 @@
                                 <p th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. luptate. </p>
                             </div>
                             <div class="product-size text-uppercase pb-40">
-                                <h4 class="product-details-tilte text-uppercase pb-10">size</h4>
+                                <h4 class="product-details-tilte text-uppercase pb-10 choose-size">size</h4>
                                 <ul>
-                                    <li><a href="#">s</a></li>
-                                    <li><a href="#">m</a></li>
-                                    <li><a href="#">l</a></li>
-                                    <li><a href="#">xl</a></li>
-                                    <li><a href="#">xxl</a></li>
+                                    <li><a class="size">s</a></li>
+                                    <li><a class="size">m</a></li>
+                                    <li><a class="size">l</a></li>
+                                    <li><a class="size">xl</a></li>
+                                    <li><a class="size">xxl</a></li>
                                 </ul>
                             </div>
                             <div class="product-attributes clearfix">
                                 <div id="quantity-wanted" class="pull-left">
                                     <h4 class="product-details-tilte text-uppercase pb-10">quantity</h4>
-                                    <input type="number" class="cart-plus-minus-box" value="1">
+                                    <input type="number" class="cart-plus-minus-box num-product" value="1">
                                 </div>
                             </div>
                             <div class="product-action-shop text-center mb-40">
@@ -78,7 +85,7 @@
                                     <i class="zmdi zmdi-eye"></i>
                                 </a>
                                 <a class="add-to-cart" title="Add to cart">
-                                    <i class="zmdi zmdi-shopping-cart"></i>
+                                    <i class="zmdi add-to-cart zmdi-shopping-cart"></i>
                                 </a>
                                 <a title="Add to Wishlist" href="#">
                                     <i class="zmdi zmdi-favorite"></i>
