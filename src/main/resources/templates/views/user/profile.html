@@ -41,7 +41,17 @@
                                             <input id="fullName" th:field="*{fullName}" name="fullName" placeholder="Full Name"
                                                    class="form-control here" type="text">
                                         </div>
-                                        <div class="text text-danger" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></div>
+                                        <div class="alert alert-danger" th:if="${#fields.hasErrors('fullName')}"
+                                             th:errors="*{fullName}"></div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="phone" class="col-4 col-form-label" th:text="#{label.phone}">Phone number</label>
+                                        <div class="col-8">
+                                            <input id="phone" th:field="*{phone}" name="phone" placeholder="phone"
+                                                   class="form-control here" type="text">
+                                        </div>
+                                        <div class="alert alert-danger" th:if="${#fields.hasErrors('fullName')}"
+                                             th:errors="*{fullName}"></div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="email" class="col-4 col-form-label" th:text="#{label.email}">Email</label>

@@ -103,10 +103,23 @@ public class ProductController {
     }
 
     @GetMapping("/category")
-    public String showProductByCategory(@RequestParam int categoryId, Model model, @PageableDefault(size = 6) Pageable pageable) {
+    public String showProductByCategory(@RequestParam int categoryId, Model model, @PageableDefault(size = 9) Pageable pageable) {
         model.addAttribute("allProducts", productService.findAllByCategoryIdAndStatus(categoryId,true, pageable));
+        model.addAttribute("clothing", typeService.findAllByCategoryId(1));
+        model.addAttribute("activewear", typeService.findAllByCategoryId(2));
+        model.addAttribute("accessories", typeService.findAllByCategoryId(3));
         model.addAttribute("categories", categoryService.findAllByStatus(true));
-        return "views/product/allProducts";
+        return "template_v2/views/product/allProducts";
+    }
+
+    @GetMapping("/type")
+    public String showProductByType(@RequestParam int typeId, Model model, @PageableDefault(size = 9) Pageable pageable) {
+        model.addAttribute("allProducts", productService.findAllByTypeIdAndStatus(typeId,true, pageable));
+        model.addAttribute("clothing", typeService.findAllByCategoryId(1));
+        model.addAttribute("activewear", typeService.findAllByCategoryId(2));
+        model.addAttribute("accessories", typeService.findAllByCategoryId(3));
+//        model.addAttribute("categories", categoryService.findAllByStatus(true));
+        return "template_v2/views/product/allProducts";
     }
 
     @PostMapping("/addToCart")

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template_v2/fragments/master_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="my-account-page section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="addresses-lists">
+                        <div class="col-xs-12 col-sm-6 col-lg-6">
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingFour">
+                                        <h4 class="panel-title">
+                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour" class="">
+                                                <i class="zmdi zmdi-home"></i>
+                                                <span>My personal information</span>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour" aria-expanded="true" style="">
+                                        <div class="panel-body">
+                                            <div class="coupon-info">
+                                                <form action="#" th:action="@{/updateUser}" th:object="${user}" method="post">
+                                                    <p class="form-row">
+                                                        <label><span class="required">*</span>Username</label>
+                                                        <input th:field="*{username}" type="text" disabled>
+                                                        <input type="hidden" th:field="*{username}" th:value="${user.username}"/>
+                                                        <input type="hidden" th:field="*{password}" th:value="${user.password}"/>
+                                                    </p>
+                                                    <p class="form-row">
+                                                        <label><span class="required">*</span>Your Full Name</label>
+                                                        <input id="fullName" name="fullName" th:field="*{fullName}" type="text">
+                                                    </p>
+                                                    <div class="alert alert-danger" th:if="${#fields.hasErrors('fullName')}"
+                                                         th:errors="*{fullName}"></div>
+                                                    <p class="form-row">
+                                                        <label><span class="required">*</span>E-mail address</label>
+                                                        <input th:field="*{email}" id="email" name="email" type="text">
+                                                    </p>
+                                                    <div class="alert alert-danger" th:if="${#fields.hasErrors('email')}"
+                                                         th:errors="*{email}"></div>
+                                                    <div th:if="${emailExist}">
+                                                        <div class="alert alert-danger" th:text="#{label.email.existed}"></div>
+                                                    </div>
+                                                    <p class="form-row">
+                                                        <label><span class="required">*</span>Phone number</label>
+                                                        <input id="phone" name="phone" th:field="*{phone}" type="text">
+                                                    </p>
+                                                    <div class="alert alert-danger" th:if="${#fields.hasErrors('phone')}"
+                                                         th:errors="*{phone}"></div>
+                                                    <div class="country-select shop-select">
+                                                        <label>Date of Birth</label>
+                                                        <input th:field="*{dob}" id="dob" name="dob" type="date"/>
+                                                    </div>
+                                                    <button name="submit" type="submit" class="button extra-small">
+                                                        <span>Save</span>
+                                                    </button>
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-6">
+                            <div class="myaccount-link-list">
+                                <div class="panel panel-default mb-5">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="wishlist.html">
+                                                <i class="zmdi zmdi-favorite"></i>
+                                                <span>My wishlists</span>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default m-0">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="cart.html">
+                                                <i class="zmdi zmdi-format-list-numbered"></i>
+                                                <span>Order history and details</span>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="brand-area pb-90">
+            <div class="container">
+                <div class="row">
+                    <div class="brand-list owl-carousel owl-theme" style="opacity: 1; display: block;">
+                        <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 4212px; left: 0px; display: block;"><div class="owl-item" style="width: 234px;"><div class="col-md-12">
+                            <div class="single-brand text-center">
+                                <a href="#">
+                                    <img src="images/brand/1.png" alt="">
+                                </a>
+                            </div>
+                        </div></div><div class="owl-item" style="width: 234px;"><div class="col-md-12">
+                            <div class="single-brand text-center">
+                                <a href="#">
+                                    <img src="images/brand/2.png" alt="">
+                                </a>
+                            </div>
+                        </div></div><div class="owl-item" style="width: 234px;"><div class="col-md-12">
+                            <div class="single-brand text-center">
+                                <a href="#">
+                                    <img src="images/brand/3.png" alt="">
+                                </a>
+                            </div>
+                        </div></div><div class="owl-item" style="width: 234px;"><div class="col-md-12">
+                            <div class="single-brand text-center">
+                                <a href="#">
+                                    <img src="images/brand/4.png" alt="">
+                                </a>
+                            </div>
+                        </div></div><div class="owl-item" style="width: 234px;"><div class="col-md-12">
+                            <div class="single-brand text-center">
+                                <a href="#">
+                                    <img src="images/brand/5.png" alt="">
+                                </a>
+                            </div>
+                        </div></div><div class="owl-item" style="width: 234px;"><div class="col-md-12">
+                            <div class="single-brand text-center">
+                                <a href="#">
+                                    <img src="images/brand/6.png" alt="">
+                                </a>
+                            </div>
+                        </div></div><div class="owl-item" style="width: 234px;"><div class="col-md-12">
+                            <div class="single-brand text-center">
+                                <a href="#">
+                                    <img src="images/brand/1.png" alt="">
+                                </a>
+                            </div>
+                        </div></div><div class="owl-item" style="width: 234px;"><div class="col-md-12">
+                            <div class="single-brand text-center">
+                                <a href="#">
+                                    <img src="images/brand/2.png" alt="">
+                                </a>
+                            </div>
+                        </div></div><div class="owl-item" style="width: 234px;"><div class="col-md-12">
+                            <div class="single-brand text-center">
+                                <a href="#">
+                                    <img src="images/brand/3.png" alt="">
+                                </a>
+                            </div>
+                        </div></div></div></div>
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="newsletter-area">
+            <div class="container">
+                <div class="row">
+                    <div class="newsletter-content default-bg clearfix ptb-40">
+                        <div class="col-md-offset-2 col-md-3 col-sm-5">
+                            <div class="newsletter-title text-white text-uppercase">
+                                <h4>NewsLetter Sign-Up</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-7">
+                            <div class="signup-form">
+                                <form class="news-form" action="#">
+                                    <input type="text" placeholder="Enter your email address..." class="f-form">
+                                    <button class="submit text-uppercase">subscribe</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

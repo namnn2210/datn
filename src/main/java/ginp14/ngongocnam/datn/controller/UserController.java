@@ -3,14 +3,10 @@ package ginp14.ngongocnam.datn.controller;
 import ginp14.ngongocnam.datn.model.*;
 import ginp14.ngongocnam.datn.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.thymeleaf.context.Context;
 
@@ -49,8 +45,12 @@ public class UserController {
     @Autowired
     private TypeService typeService;
 
-    @Autowired
-    private ApplicationEventPublisher eventPublisher;
+//    @Autowired
+//    private JwtUtil jwtUtil;
+//
+//    @Autowired
+//    private AuthenticationManager authenticationManager;
+
 
     @GetMapping("/login")
     public String showLogin(Model model) {
@@ -172,9 +172,12 @@ public class UserController {
         }
         String username = principal.getName();
         User user = userService.findByUsername(username);
-        model.addAttribute("categories", categoryService.findAllByStatus(true));
+//        model.addAttribute("categories", categoryService.findAllByStatus(true));
+        model.addAttribute("clothing", typeService.findAllByCategoryId(1));
+        model.addAttribute("activewear", typeService.findAllByCategoryId(2));
+        model.addAttribute("accessories", typeService.findAllByCategoryId(3));
         model.addAttribute("user", user);
-        return "views/user/profile";
+        return "template_v2/views/user/profile";
     }
 
     @GetMapping("/orderHistory")
@@ -193,7 +196,10 @@ public class UserController {
         model.addAttribute("orders", orders);
         model.addAttribute("maps", maps);
         model.addAttribute("categories", categoryService.findAllByStatus(true));
-        return "views/user/order_history";
+        model.addAttribute("clothing", typeService.findAllByCategoryId(1));
+        model.addAttribute("activewear", typeService.findAllByCategoryId(2));
+        model.addAttribute("accessories", typeService.findAllByCategoryId(3));
+        return "template_v2/views/user/order_history";
     }
 
     @PostMapping("/confirmAccount")
@@ -212,7 +218,7 @@ public class UserController {
             model.addAttribute("error", true);
             return "views/other/register_success";
         }
-        return "redirect:/homepage";
+        return "redirect:/";
     }
 
     @GetMapping("/verifyError")
@@ -226,4 +232,16 @@ public class UserController {
         model.addAttribute("categories", categoryService.findAllByStatus(true));
         return "views/other/register_success";
     }
+
+//    @PostMapping("/authenticate")
+//    public @ResponseBody String generateToken(@RequestBody UserCriteria userCriteria) throws Exception {
+//        try {
+//            authenticationManager.authenticate(
+//                    new UsernamePasswordAuthenticationToken(userCriteria.getUsername(), userCriteria.getPassword())
+//            );
+//        } catch (Exception ex) {
+//            System.err.println(ex);
+//        }
+//        return jwtUtil.generateToken(userCriteria.getUsername());
+//    }
 }

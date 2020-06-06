@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template_v2/fragments/master_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Order History</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wishlist-content">
+                    <form action="#">
+                        <div class="wishlist-table table-responsive p-30 text-uppercase">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th class="product-thumbnail"></th>
+                                    <th class="product-name"><span class="nobr">Order No</span></th>
+                                    <th class="product-prices"><span class="nobr">Order Date</span></th>
+                                    <th class="product-stock-stauts"><span class="nobr">Total Price</span></th>
+                                    <th class="product-add-to-cart"><span class="nobr">Products</span></th>
+                                    <th class="product-remove"><span class="nobr">Status</span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:if="${orders.size() > 0}" th:each="order:${orders}" class="table-row">
+                                    <td class="product-thumbnail"><a href="#" title="men’s black t-shirt"></a></td>
+                                    <td class="product-name pull-left mt-20">
+                                        <a href="#" th:text="${order.id}" title="men’s black t-shirt">men’s black
+                                            t-shirt</a>
+                                    </td>
+                                    <td class="product-prices"><span th:text="${order.created_at}"
+                                                                     class="amount">£34.78</span></td>
+                                    <td class="product-stock-status">
+                                        <span th:text="'$'+${order.totalPrice}"></span>
+                                    </td>
+                                    <td class="product-value">
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th th:text="#{label.order.products.name}">Name</th>
+                                                <th th:text="#{label.order.products.size}">Size</th>
+                                                <th th:text="#{label.order.products.quantity}">Quantity</th>
+                                                <th th:text="#{label.order.products.unit.price}">Unit Price</th>
+                                            </tr>
+                                            </thead>
+                                            <tr th:each="product:${maps.get(order.id)}">
+                                                <td th:text="${product.product.name}"></td>
+                                                <td th:text="${product.size}"></td>
+                                                <td th:text="${product.quantity}"></td>
+                                                <td th:text="'$' + ${product.product.price}"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <span th:if="${order.status} == true"
+                                              th:text="#{label.order.products.status.done}">Done</span>
+                                        <span th:if="${order.status} == false"
+                                              th:text="#{label.order.products.status.pending}">Pending</span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="cart-requerment mt-50 clearfix">
+                                <div class="col-md-4 col-sm-6 clearfix">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="brand-area pb-90">
+        <div class="container">
+            <div class="row">
+                <div class="brand-list owl-carousel owl-theme" style="opacity: 1; display: block;">
+                    <div class="owl-wrapper-outer">
+                        <div class="owl-wrapper"
+                             style="width: 4212px; left: 0px; display: block; transition: all 0ms ease 0s; transform: translate3d(0px, 0px, 0px);">
+                            <div class="owl-item" style="width: 234px;">
+                                <div class="col-md-12">
+                                    <div class="single-brand text-center">
+                                        <a href="#">
+                                            <img src="images/brand/1.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owl-item" style="width: 234px;">
+                                <div class="col-md-12">
+                                    <div class="single-brand text-center">
+                                        <a href="#">
+                                            <img src="images/brand/2.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owl-item" style="width: 234px;">
+                                <div class="col-md-12">
+                                    <div class="single-brand text-center">
+                                        <a href="#">
+                                            <img src="images/brand/3.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owl-item" style="width: 234px;">
+                                <div class="col-md-12">
+                                    <div class="single-brand text-center">
+                                        <a href="#">
+                                            <img src="images/brand/4.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owl-item" style="width: 234px;">
+                                <div class="col-md-12">
+                                    <div class="single-brand text-center">
+                                        <a href="#">
+                                            <img src="images/brand/5.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owl-item" style="width: 234px;">
+                                <div class="col-md-12">
+                                    <div class="single-brand text-center">
+                                        <a href="#">
+                                            <img src="images/brand/6.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owl-item" style="width: 234px;">
+                                <div class="col-md-12">
+                                    <div class="single-brand text-center">
+                                        <a href="#">
+                                            <img src="images/brand/1.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owl-item" style="width: 234px;">
+                                <div class="col-md-12">
+                                    <div class="single-brand text-center">
+                                        <a href="#">
+                                            <img src="images/brand/2.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owl-item" style="width: 234px;">
+                                <div class="col-md-12">
+                                    <div class="single-brand text-center">
+                                        <a href="#">
+                                            <img src="images/brand/3.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="newsletter-area">
+        <div class="container">
+            <div class="row">
+                <div class="newsletter-content default-bg clearfix ptb-40">
+                    <div class="col-md-offset-2 col-md-3 col-sm-5">
+                        <div class="newsletter-title text-white text-uppercase">
+                            <h4>NewsLetter Sign-Up</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-sm-7">
+                        <div class="signup-form">
+                            <form class="news-form" action="#">
+                                <input type="text" placeholder="Enter your email address..." class="f-form">
+                                <button class="submit text-uppercase">subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

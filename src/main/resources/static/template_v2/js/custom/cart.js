@@ -96,3 +96,82 @@ $('.size').click(function () {
     $('.size').removeClass('size-active')
     $(this).addClass('size-active')
 })
+
+$('.cart-item-quantity').change(function () {
+    var update_products = [];
+
+    $('.cart-item-quantity').each(function () {
+        if ($(this).val() < 1) {
+            swal({
+                text: "Product quantity must be bigger than 1",
+                icon: "error"
+            });
+            $(this).val(1)
+        } else {
+            update_products.push({id: $(this).attr("name"), size: $(this).attr("id"), quantity: $(this).val()});
+        }
+    });
+    console.log(update_products)
+    $.ajax({
+        type: "post",
+        url: "/cart/updateCart",
+        contentType: 'application/json; charset=UTF-8',
+        dataType: 'json',
+        data: JSON.stringify(update_products),
+        success: function (resp) {
+            console.log(resp);
+            // for (var i in resp.cartItem) {
+            //     var item_class = 'item-' + resp.cartItem[i].size;
+            //     $('.num-product' + item_class).val(resp.cartItem[i].quantity);
+            //     $('.' + item_class).text('$' + resp.cartItem[i].quantity * resp.cartItem[i].product.price);
+            // }
+            $('.sub-total').text('$' + resp.totalPrice);
+            $('.total-price').text('$' + resp.totalPrice);
+        },
+        error: function () {
+            swal("Error");
+        }
+    });
+})
+
+$('.product-remove').click(function (event) {
+    event.preventDefault();
+    var deleteId = $('.table-row').attr("id").replace('item-', '');
+    var size = $('.table-row').attr("name");
+    var delete_product = {
+        id: deleteId,
+        size: size
+    };
+    swal({
+        title: "Are you sure you want to delete this product?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                method: "post",
+                url: "/cart/removeCartProduct",
+                contentType: 'application/json; charset=UTF-8',
+                dataType: 'json',
+                data: JSON.stringify(delete_product),
+                success: function (resp) {
+                    swal("Product is deleted!", {
+                        icon: "success",
+                    });
+                    // swal("Product is deleted");
+                    $("#item-" + deleteId).remove();
+                    $('.cart-quantity').text(resp.cartItem.length);
+                    $('.sub-total').text('$' + resp.totalPrice);
+                    $('.total-price').text('$' + resp.totalPrice);
+                },
+                error: function () {
+                    swal("Error");
+                }
+            })
+        }
+    })
+    // if (confirm(confirm_question)) {
+    //
+    // }
+})

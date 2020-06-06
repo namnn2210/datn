@@ -43,6 +43,9 @@ public class CartController {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private TypeService typeService;
+
     private static final String SUCCESS_URL = "/cart/checkout/success";
     private static final String CANCEL_URL = "/cart/checkout/cancel";
 
@@ -56,13 +59,31 @@ public class CartController {
             return "redirect:/cart/noitem";
         }
         model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("clothing", typeService.findAllByCategoryId(1));
+        model.addAttribute("activewear", typeService.findAllByCategoryId(2));
+        model.addAttribute("accessories", typeService.findAllByCategoryId(3));
         return "template_v2/views/product/cart";
+    }
+
+    @GetMapping("/go-to-checkout")
+    public String gotoCheckout(Model model, HttpSession session) {
+        if (session.getAttribute("cart") == null) {
+            return "redirect:/cart/noitem";
+        }
+        model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("clothing", typeService.findAllByCategoryId(1));
+        model.addAttribute("activewear", typeService.findAllByCategoryId(2));
+        model.addAttribute("accessories", typeService.findAllByCategoryId(3));
+        return "template_v2/views/product/checkout";
     }
 
     @GetMapping("/noitem")
     public String showNoItemError(Model model) {
         model.addAttribute("categories", categoryService.findAll());
-        return "views/other/no_item_cart";
+        model.addAttribute("clothing", typeService.findAllByCategoryId(1));
+        model.addAttribute("activewear", typeService.findAllByCategoryId(2));
+        model.addAttribute("accessories", typeService.findAllByCategoryId(3));
+        return "template_v2/views/product/no_item_cart";
     }
 
     @GetMapping("/ordersuccess")

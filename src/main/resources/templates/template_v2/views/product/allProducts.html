@@ -4,7 +4,7 @@
       layout:decorate="~{template_v2/fragments/master_layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>All products</title>
 </head>
 <body>
 <div layout:fragment="content">
@@ -22,7 +22,7 @@
                                             <div class="product-img-content mb-20">
                                                 <div class="product-img">
                                                     <a th:href="@{/products/detail(productId=${product.id})}" href="product-details.html">
-                                                        <img src="images/product/3.jpg" alt="">
+                                                        <img th:src="${product.url.split('&')[0]}" src="images/product/3.jpg" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="product-action text-center">
@@ -590,75 +590,25 @@
                                 <ul class="treeview">
                                     <li class="closed expandable">
                                         <div class="hitarea closed-hitarea expandable-hitarea"></div>
-                                        <a href="#">Electronic</a>
-                                        <ul class="treeview" style="display: none;">
-                                            <li class="expandable">
-                                                <div class="hitarea expandable-hitarea"></div>
-                                                <a href="#">Television</a>
-                                                <ul class="treeview" style="display: none;">
-                                                    <li><a href="#">LCD TV</a></li>
-                                                    <li><a href="#">LED TV</a></li>
-                                                    <li><a href="#">Plasma TV</a></li>
-                                                    <li class="last"><a href="#">Curved TV</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="expandable">
-                                                <div class="hitarea expandable-hitarea"></div>
-                                                <a href="#">Refrigrator</a>
-                                                <ul class="treeview" style="display: none;">
-                                                    <li><a href="#">LG</a></li>
-                                                    <li><a href="#">Samsung</a></li>
-                                                    <li><a href="#">Tosiba</a></li>
-                                                    <li class="last"><a href="#">Panasonic</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="expandable lastExpandable">
-                                                <div class="hitarea expandable-hitarea lastExpandable-hitarea"></div>
-                                                <a href="#">Air Conditanior</a>
-                                                <ul class="treeview" style="display: none;">
-                                                    <li><a href="#">General</a></li>
-                                                    <li><a href="#">Singer</a></li>
-                                                    <li><a href="#">Samsung</a></li>
-                                                    <li class="last"><a href="#">Gree</a></li>
-                                                </ul>
-                                            </li>
+                                        <a th:href="@{/products/category(categoryId=1)}" href="#">Clothing</a>
+                                        <ul th:each="obj:${clothing}" class="treeview" style="display: none;">
+                                            <li><a th:text="${obj.name}" th:href="@{/products/type(typeId=${obj.id})}" href="#">Men Bag</a></li>
                                         </ul>
                                     </li>
                                     <li class="closed expandable">
                                         <div class="hitarea closed-hitarea expandable-hitarea"></div>
-                                        <a href="#">Features</a>
-                                        <ul class="treeview" style="display: none;">
-                                            <li><a href="#">Men Bag</a></li>
-                                            <li><a href="#">Shoes</a></li>
-                                            <li><a href="#">Tops</a></li>
-                                            <li><a href="#">Watch</a></li>
-                                            <li class="last"><a href="#">T-shirt</a></li>
+                                        <a th:href="@{/products/category(categoryId=2)}" href="#">Activewear</a>
+                                        <ul th:each="obj:${activewear}" class="treeview" style="display: none;">
+                                            <li><a th:text="${obj.name}" th:href="@{/products/type(typeId=${obj.id})}" href="#">Apple</a></li>
                                         </ul>
                                     </li>
                                     <li class="closed expandable">
                                         <div class="hitarea closed-hitarea expandable-hitarea"></div>
-                                        <a href="#">Accessories</a>
-                                        <ul class="treeview" style="display: none;">
-                                            <li><a href="#">Apple</a></li>
-                                            <li><a href="#">LG</a></li>
-                                            <li><a href="#">Samsung</a></li>
-                                            <li class="last"><a href="#">Sony</a></li>
+                                        <a th:href="@{/products/category(categoryId=3)}" href="#">Accessories</a>
+                                        <ul th:each="obj:${accessories}" class="treeview" style="display: none;">
+                                            <li><a th:text="${obj.name}" th:href="@{/products/type(typeId=${obj.id})}" href="#">Apple</a></li>
                                         </ul>
                                     </li>
-                                    <li class="closed expandable">
-                                        <div class="hitarea closed-hitarea expandable-hitarea"></div>
-                                        <a href="#">Top Brands</a>
-                                        <ul class="treeview" style="display: none;">
-                                            <li><a href="#">Apple</a></li>
-                                            <li><a href="#">LG</a></li>
-                                            <li><a href="#">Samsung</a></li>
-                                            <li class="last"><a href="#">Sony</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="closed"><a href="#">Jewelry</a></li>
-                                    <li class="closed"><a href="#">Features</a></li>
-                                    <li class="closed"><a href="#">Transportation</a></li>
-                                    <li class="closed last"><a href="#">Video Games</a></li>
                                 </ul>
                             </div>
                         </aside>
@@ -679,143 +629,7 @@
                                         style="left: 75.0751%;"></span></div>
                             </div>
                         </aside>
-                        <aside class="single-aside aside-size mb-35">
-                            <h4 class="aside-title text-uppercase pb-20 m-0">size</h4>
-                            <ul class="text-ash text-uppercase mt-20">
-                                <li><a href="#">m</a></li>
-                                <li><a href="#">s</a></li>
-                                <li><a href="#">l</a></li>
-                                <li><a href="#">sl</a></li>
-                                <li><a href="#">xl</a></li>
-                            </ul>
-                        </aside>
-                        <aside class="single-aside aside-color mb-35">
-                            <h4 class="aside-title text-uppercase pb-20 m-0">color</h4>
-                            <ul class="mt-20 text-center">
-                                <li class="color-1"><a href="#"></a></li>
-                                <li class="color-2"><a href="#"></a></li>
-                                <li class="color-3"><a href="#"></a></li>
-                                <li class="color-4"><a href="#"></a></li>
-                                <li class="color-5"><a href="#"></a></li>
-                                <li class="color-6"><a href="#"></a></li>
-                                <li class="color-7"><a href="#"></a></li>
-                            </ul>
-                        </aside>
-                        <aside class="single-aside product-cat mb-40">
-                            <h4 class="aside-title text-uppercase pb-20 m-0">filter by brands</h4>
-                            <ul class="text-uppercase">
-                                <li><a href="#">raibon</a></li>
-                                <li><a href="#">Aenim</a></li>
-                                <li><a href="#">Aolo</a></li>
-                                <li><a href="#">nike</a></li>
-                                <li><a href="#">yellow</a></li>
-                                <li><a href="#">arong</a></li>
-                            </ul>
-                        </aside>
-                        <aside class="single-aside aside-img">
-                            <a href="#" class="b-img widget-img text-uppercase">
-                                <img src="images/widget/1.jpg" alt="">
-                                <div class="best">best</div>
-                                <div class="brand">brand</div>
-                            </a>
-                        </aside>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="brand-area pb-90">
-        <div class="container">
-            <div class="row">
-                <div class="brand-list owl-carousel owl-theme" style="opacity: 1; display: block;">
-                    <div class="owl-wrapper-outer">
-                        <div class="owl-wrapper"
-                             style="width: 4500px; left: 0px; display: block; transition: all 0ms ease 0s; transform: translate3d(0px, 0px, 0px);">
-                            <div class="owl-item" style="width: 250px;">
-                                <div class="col-md-12">
-                                    <div class="single-brand text-center">
-                                        <a href="#">
-                                            <img src="images/brand/1.png" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item" style="width: 250px;">
-                                <div class="col-md-12">
-                                    <div class="single-brand text-center">
-                                        <a href="#">
-                                            <img src="images/brand/2.png" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item" style="width: 250px;">
-                                <div class="col-md-12">
-                                    <div class="single-brand text-center">
-                                        <a href="#">
-                                            <img src="images/brand/3.png" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item" style="width: 250px;">
-                                <div class="col-md-12">
-                                    <div class="single-brand text-center">
-                                        <a href="#">
-                                            <img src="images/brand/4.png" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item" style="width: 250px;">
-                                <div class="col-md-12">
-                                    <div class="single-brand text-center">
-                                        <a href="#">
-                                            <img src="images/brand/5.png" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item" style="width: 250px;">
-                                <div class="col-md-12">
-                                    <div class="single-brand text-center">
-                                        <a href="#">
-                                            <img src="images/brand/6.png" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item" style="width: 250px;">
-                                <div class="col-md-12">
-                                    <div class="single-brand text-center">
-                                        <a href="#">
-                                            <img src="images/brand/1.png" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item" style="width: 250px;">
-                                <div class="col-md-12">
-                                    <div class="single-brand text-center">
-                                        <a href="#">
-                                            <img src="images/brand/2.png" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item" style="width: 250px;">
-                                <div class="col-md-12">
-                                    <div class="single-brand text-center">
-                                        <a href="#">
-                                            <img src="images/brand/3.png" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
                 </div>
             </div>
         </div>
