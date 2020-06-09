@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
@@ -37,12 +37,12 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Page<Product> findAllByCategoryId(int id, Pageable pageable) {
-        return productRepository.findAllByCategoryId(id,pageable);
+        return productRepository.findAllByCategoryId(id, pageable);
     }
 
     @Override
     public Page<Product> findAllByTypeIdAndStatus(int id, boolean status, Pageable pageable) {
-        return productRepository.findAllByTypeIdAndStatus(id,true,pageable);
+        return productRepository.findAllByTypeIdAndStatus(id, true, pageable);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Page<Product> findAllByStatus(boolean status, Pageable pageable) {
-        return productRepository.findAllByStatus(true,pageable);
+        return productRepository.findAllByStatus(true, pageable);
     }
 
     @Override
@@ -67,11 +67,11 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public List<Product> findAllByCategoryIdAndStatus(int id, boolean status) {
-        return productRepository.findAllByCategoryIdAndStatus(id,status);
+        return productRepository.findAllByCategoryIdAndStatus(id, status);
     }
 
     @Override
     public Page<Product> findAllByCategoryIdAndStatus(int id, boolean status, Pageable pageable) {
-        return productRepository.findAllByCategoryIdAndStatus(id,status,pageable);
+        return productRepository.findAllByCategoryIdAndStatus(id, status, pageable);
     }
 }

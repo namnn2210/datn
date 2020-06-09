@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface OrderDetailService {
     void save(OrderDetail orderDetail);
+
     List<OrderDetail> findByOrderId(int id);
 }

@@ -26,7 +26,7 @@ public class CategoryController {
 
     @PostMapping("/addCategory")
     public String addCategory(@Valid @ModelAttribute("category") Category category, BindingResult result, Model model) {
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             return "views/admin/add_category";
         }
         category.setStatus(true);
@@ -36,10 +36,10 @@ public class CategoryController {
 
     @PostMapping("/deleteCategory")
     public @ResponseBody
-    String deleteCategory(@RequestBody int catId){
+    String deleteCategory(@RequestBody int catId) {
         Category category = categoryService.findById(catId);
         List<Product> products = productService.findAllByCategoryId(catId);
-        for (Product product:products) {
+        for (Product product : products) {
             product.setStatus(false);
             productService.save(product);
         }

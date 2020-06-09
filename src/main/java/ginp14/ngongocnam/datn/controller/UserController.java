@@ -86,7 +86,7 @@ public class UserController {
             model.addAttribute("accessories", typeService.findAllByCategoryId(3));
             return "template_v2/views/user/login";
         }
-        if(!cfpassword.equals(user.getPassword())) {
+        if (!cfpassword.equals(user.getPassword())) {
             model.addAttribute("passwordNotMatch", true);
             model.addAttribute("clothing", typeService.findAllByCategoryId(1));
             model.addAttribute("activewear", typeService.findAllByCategoryId(2));

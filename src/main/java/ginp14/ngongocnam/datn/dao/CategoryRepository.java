@@ -7,10 +7,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface CategoryRepository extends JpaRepository<Category,Integer> {
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
     List<Category> findAll();
+
     Page<Category> findAll(Pageable pageable);
+
     Category findById(int id);
+
     List<Category> findAllByStatus(boolean status);
+
     Page<Category> findAllByStatus(boolean status, Pageable pageable);
 }

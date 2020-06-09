@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface TypeRepository extends JpaRepository<Type, Integer> {
     Type findById(int id);
+
     List<Type> findAllByCategoryId(int id);
+
     Page<Type> findAll(Pageable pageable);
 }

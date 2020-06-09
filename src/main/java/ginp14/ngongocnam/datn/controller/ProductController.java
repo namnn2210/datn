@@ -42,17 +42,16 @@ public class ProductController {
         if (result.hasErrors()) {
             List<Category> categories = categoryService.findAll();
             List<Type> teams = typeService.findAll();
-            model.addAttribute("teams",teams);
-            model.addAttribute("categories",categories);
+            model.addAttribute("teams", teams);
+            model.addAttribute("categories", categories);
             return "views/admin/add_product";
-        }
-        else if(product.getUrl() == null || product.getUrl().equals("")) {
-            if(file.isEmpty()) {
-                model.addAttribute("message","No file uploaded. Product must have an image");
+        } else if (product.getUrl() == null || product.getUrl().equals("")) {
+            if (file.isEmpty()) {
+                model.addAttribute("message", "No file uploaded. Product must have an image");
                 List<Category> categories = categoryService.findAll();
                 List<Type> teams = typeService.findAll();
-                model.addAttribute("teams",teams);
-                model.addAttribute("categories",categories);
+                model.addAttribute("teams", teams);
+                model.addAttribute("categories", categories);
                 return "views/admin/add_product";
             }
             try {
@@ -61,12 +60,11 @@ public class ProductController {
                 product.setUrl(url);
                 product.setStatus(true);
                 productService.save(product);
-            } catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
                 model.addAttribute("message", "Sorry I can't upload that!");
             }
-        }
-        else {
+        } else {
             productService.save(product);
         }
         return "redirect:/admin/listProducts";
@@ -83,7 +81,7 @@ public class ProductController {
 
     @GetMapping("/all")
     public String showAllProducts(Model model, @PageableDefault(size = 9) Pageable pageable) {
-        model.addAttribute("allProducts", productService.findAllByStatus(true,pageable));
+        model.addAttribute("allProducts", productService.findAllByStatus(true, pageable));
         model.addAttribute("clothing", typeService.findAllByCategoryId(1));
         model.addAttribute("activewear", typeService.findAllByCategoryId(2));
         model.addAttribute("accessories", typeService.findAllByCategoryId(3));
@@ -95,7 +93,7 @@ public class ProductController {
     public String showProductDetail(@RequestParam int productId, Model model) {
         Product product = productService.findById(productId);
         model.addAttribute("product", product);
-        model.addAttribute("products", productService.findAllByCategoryIdAndStatus(product.getCategory().getId(),true));
+        model.addAttribute("products", productService.findAllByCategoryIdAndStatus(product.getCategory().getId(), true));
         model.addAttribute("clothing", typeService.findAllByCategoryId(1));
         model.addAttribute("activewear", typeService.findAllByCategoryId(2));
         model.addAttribute("accessories", typeService.findAllByCategoryId(3));
@@ -104,7 +102,7 @@ public class ProductController {
 
     @GetMapping("/category")
     public String showProductByCategory(@RequestParam int categoryId, Model model, @PageableDefault(size = 9) Pageable pageable) {
-        model.addAttribute("allProducts", productService.findAllByCategoryIdAndStatus(categoryId,true, pageable));
+        model.addAttribute("allProducts", productService.findAllByCategoryIdAndStatus(categoryId, true, pageable));
         model.addAttribute("clothing", typeService.findAllByCategoryId(1));
         model.addAttribute("activewear", typeService.findAllByCategoryId(2));
         model.addAttribute("accessories", typeService.findAllByCategoryId(3));
@@ -114,7 +112,7 @@ public class ProductController {
 
     @GetMapping("/type")
     public String showProductByType(@RequestParam int typeId, Model model, @PageableDefault(size = 9) Pageable pageable) {
-        model.addAttribute("allProducts", productService.findAllByTypeIdAndStatus(typeId,true, pageable));
+        model.addAttribute("allProducts", productService.findAllByTypeIdAndStatus(typeId, true, pageable));
         model.addAttribute("clothing", typeService.findAllByCategoryId(1));
         model.addAttribute("activewear", typeService.findAllByCategoryId(2));
         model.addAttribute("accessories", typeService.findAllByCategoryId(3));

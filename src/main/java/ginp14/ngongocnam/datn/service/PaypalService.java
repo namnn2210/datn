@@ -7,5 +7,6 @@ import ginp14.ngongocnam.datn.config.PaypalPaymentMethod;
 
 public interface PaypalService {
     Payment createPayment(Double totalPrice, String currency, PaypalPaymentMethod method, PaypalPaymentIntent intent, String cancelUrl, String successUrl) throws PayPalRESTException;
+
     Payment executePayment(String paymentId, String payerId) throws PayPalRESTException;
 }

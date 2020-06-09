@@ -144,14 +144,13 @@ public class CartController {
             String subject = "KitStore Order Confirmation";
             String templateFileName = "views/order/email_confirmation";
             Context context = new Context();
-            emailService.sendEmail(user.getEmail(),subject,templateFileName,context);
-        }
-        catch (MessagingException ex) {
+            emailService.sendEmail(user.getEmail(), subject, templateFileName, context);
+        } catch (MessagingException ex) {
             ex.printStackTrace();
         }
-        model.addAttribute("user",user);
-        model.addAttribute("order",order);
-        model.addAttribute("cartItems",cartItems);
+        model.addAttribute("user", user);
+        model.addAttribute("order", order);
+        model.addAttribute("cartItems", cartItems);
         session.removeAttribute("cart");
         return "views/order/order_confirmation";
     }

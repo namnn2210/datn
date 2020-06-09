@@ -8,9 +8,14 @@ import java.util.List;
 
 public interface CategoryService {
     List<Category> findAll();
+
     void save(Category category);
+
     Category findById(int id);
+
     List<Category> findAllByStatus(boolean status);
+
     Page<Category> findAllByStatus(boolean status, Pageable pageable);
+
     Page<Category> findAll(Pageable pageable);
 }

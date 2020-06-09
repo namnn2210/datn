@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CategoryServiceImpl implements CategoryService{
+public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private CategoryRepository categoryRepository;
@@ -37,7 +37,7 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public Page<Category> findAllByStatus(boolean status, Pageable pageable) {
-        return categoryRepository.findAllByStatus(true,pageable);
+        return categoryRepository.findAllByStatus(true, pageable);
     }
 
     @Override

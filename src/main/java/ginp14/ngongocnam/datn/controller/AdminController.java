@@ -69,7 +69,7 @@ public class AdminController {
     }
 
     @GetMapping("/listTeams")
-    public String showListTeams(Model model, @PageableDefault(size = 5) Pageable pageable){
+    public String showListTeams(Model model, @PageableDefault(size = 5) Pageable pageable) {
         model.addAttribute("teams", typeService.findAll(pageable));
         return "views/admin/list_teams";
     }
@@ -77,15 +77,15 @@ public class AdminController {
     @GetMapping("/listOrders")
     public String showListOrder(Model model) {
         List<Order> orders = orderService.findAll();
-        model.addAttribute("orders",orders);
+        model.addAttribute("orders", orders);
         return "views/admin/list_orders";
     }
 
     @GetMapping("/orderDetail")
     public String showOrderDetail(@RequestParam("orderId") int id, Model model) {
         List<OrderDetail> orderDetails = orderDetailService.findByOrderId(id);
-        model.addAttribute("orderId",id);
-        model.addAttribute("orderDetails",orderDetails);
+        model.addAttribute("orderId", id);
+        model.addAttribute("orderDetails", orderDetails);
         return "views/admin/order_detail";
     }
 
@@ -160,15 +160,15 @@ public class AdminController {
         Order order = new Order();
         OrderDetail orderDetail = new OrderDetail();
         List<Product> products = productService.findAllByStatus(true);
-        model.addAttribute("order",order);
-        model.addAttribute("orderDetail",orderDetail);
-        model.addAttribute("products",products);
+        model.addAttribute("order", order);
+        model.addAttribute("orderDetail", orderDetail);
+        model.addAttribute("products", products);
         return "views/admin/add_order";
     }
 
     @GetMapping("/getTotalProducts")
     public @ResponseBody
-    int getTotalProducts(){
+    int getTotalProducts() {
         List<Product> products = productService.findAll();
         int size = products.size();
         return size;
@@ -176,11 +176,11 @@ public class AdminController {
 
     @GetMapping("/getStatusProducts")
     public @ResponseBody
-    Map<String,Integer> getActiveProducts(){
+    Map<String, Integer> getActiveProducts() {
         List<Product> activeProducts = productService.findAllByStatus(true);
-        Map<String,Integer> statusProducts = new HashMap<>();
-        statusProducts.put("active",activeProducts.size());
-        statusProducts.put("defective",productService.findAll().size()-activeProducts.size());
+        Map<String, Integer> statusProducts = new HashMap<>();
+        statusProducts.put("active", activeProducts.size());
+        statusProducts.put("defective", productService.findAll().size() - activeProducts.size());
         return statusProducts;
     }
 
@@ -189,7 +189,7 @@ public class AdminController {
     double getTotalSales() {
         List<Order> orders = orderService.findAll();
         double totalSales = 0.0;
-        for (Order order: orders) {
+        for (Order order : orders) {
             totalSales += order.getTotalPrice();
         }
         return totalSales;
@@ -197,12 +197,12 @@ public class AdminController {
 
     @GetMapping("/getStatusOrders")
     public @ResponseBody
-    Map<String,Integer> getStatusOrders() {
+    Map<String, Integer> getStatusOrders() {
         List<Order> confirmedOrders = orderService.findAllByStatus(true);
         List<Order> pendingOrders = orderService.findAllByStatus(false);
         Map<String, Integer> statusOrders = new HashMap<>();
-        statusOrders.put("confirmed",confirmedOrders.size());
-        statusOrders.put("pending",pendingOrders.size());
+        statusOrders.put("confirmed", confirmedOrders.size());
+        statusOrders.put("pending", pendingOrders.size());
         return statusOrders;
     }
 }

@@ -12,8 +12,7 @@ import java.nio.charset.StandardCharsets;
 @Configuration
 public class ThymleafConfig {
     @Bean
-    public ITemplateResolver templateResolver()
-    {
+    public ITemplateResolver templateResolver() {
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
         templateResolver.setPrefix("templates/");
         templateResolver.setSuffix(".html");
@@ -23,8 +22,7 @@ public class ThymleafConfig {
     }
 
     @Bean
-    public TemplateEngine templateEngine()
-    {
+    public TemplateEngine templateEngine() {
         TemplateEngine templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(this.templateResolver());
 

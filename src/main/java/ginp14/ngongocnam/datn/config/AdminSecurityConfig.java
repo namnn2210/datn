@@ -33,6 +33,11 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userServiceImp).passwordEncoder(bCryptPasswordEncoder());
     }
 
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 
 
     @Override
@@ -42,19 +47,19 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
                 .hasAuthority("ADMIN")
                 .and()
                 .formLogin()
-                    .loginPage("/adminLogin")
-                    .loginProcessingUrl("/admin/login")
-                    .defaultSuccessUrl("/admin/dashboard")
-                    .failureUrl("/adminLogin?error=true")
+                .loginPage("/adminLogin")
+                .loginProcessingUrl("/admin/login")
+                .defaultSuccessUrl("/admin/dashboard")
+                .failureUrl("/adminLogin?error=true")
                 .and()
-                    .logout()
-                    .logoutUrl("/admin/logout")
-                    .permitAll()
-                    .logoutSuccessUrl("/adminLogin")
+                .logout()
+                .logoutUrl("/admin/logout")
+                .permitAll()
+                .logoutSuccessUrl("/adminLogin")
                 .and()
-                    .exceptionHandling()
-                    .accessDeniedPage("/403")
+                .exceptionHandling()
+                .accessDeniedPage("/403")
                 .and()
-                    .csrf().disable();
+                .csrf().disable();
     }
 }

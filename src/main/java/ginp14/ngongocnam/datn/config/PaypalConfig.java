@@ -20,15 +20,15 @@ public class PaypalConfig {
     private String mode;
 
     @Bean
-    public Map<String,String> paypalSdkConfig() {
-        Map<String,String> configMap = new HashMap<>();
-        configMap.put("mode",mode);
+    public Map<String, String> paypalSdkConfig() {
+        Map<String, String> configMap = new HashMap<>();
+        configMap.put("mode", mode);
         return configMap;
     }
 
     @Bean
     public OAuthTokenCredential oAuthTokenCredential() {
-        return new OAuthTokenCredential(clientId,clientSecret, paypalSdkConfig());
+        return new OAuthTokenCredential(clientId, clientSecret, paypalSdkConfig());
     }
 
     @Bean

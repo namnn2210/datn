@@ -20,7 +20,7 @@ public class EmailServiceImpl implements EmailService {
     final String password = "wnedacfibwmshnpe";
 
     @Override
-    public void sendEmail(String email, String subject, String templateFileName,Context context) throws MessagingException {
+    public void sendEmail(String email, String subject, String templateFileName, Context context) throws MessagingException {
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.port", "465");
@@ -38,7 +38,7 @@ public class EmailServiceImpl implements EmailService {
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
         helper.setTo(email);
         helper.setSubject(subject);
-        helper.setText(someClass.generateMailHtml("Hi There",templateFileName, context), true);
+        helper.setText(someClass.generateMailHtml("Hi There", templateFileName, context), true);
         Transport.send(message);
     }
 }
