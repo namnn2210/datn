@@ -74,7 +74,7 @@ public class AdminController {
 
     @GetMapping("/listOrders")
     public String showListOrder(Model model) {
-        List<Order> orders = orderService.findAll();
+        List<HashedOrder> orders = orderService.findAll();
         model.addAttribute("orders", orders);
         return "views/admin/list_orders";
     }
@@ -182,16 +182,16 @@ public class AdminController {
         return statusProducts;
     }
 
-    @GetMapping("/getTotalSales")
-    public @ResponseBody
-    double getTotalSales() {
-        List<Order> orders = orderService.findAll();
-        double totalSales = 0.0;
-        for (Order order : orders) {
-            totalSales += order.getTotalPrice();
-        }
-        return totalSales;
-    }
+//    @GetMapping("/getTotalSales")
+//    public @ResponseBody
+//    double getTotalSales() {
+//        List<HashedOrder> orders = orderService.findAll();
+//        double totalSales = 0.0;
+//        for (HashedOrder order : orders) {
+//            totalSales += order.getTotalPrice();
+//        }
+//        return totalSales;
+//    }
 
     @GetMapping("/getStatusOrders")
     public @ResponseBody

@@ -14,7 +14,7 @@ public class OrderDetail implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
-    private Order order;
+    private HashedOrder order;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
@@ -32,7 +32,7 @@ public class OrderDetail implements Serializable {
     public OrderDetail() {
     }
 
-    public OrderDetail(Order order, Product product, int quantity, String size, double itemTotalPrice) {
+    public OrderDetail(HashedOrder order, Product product, int quantity, String size, double itemTotalPrice) {
         this.order = order;
         this.product = product;
         this.quantity = quantity;
@@ -56,11 +56,11 @@ public class OrderDetail implements Serializable {
         this.id = id;
     }
 
-    public Order getOrder() {
+    public HashedOrder getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(HashedOrder order) {
         this.order = order;
     }
 

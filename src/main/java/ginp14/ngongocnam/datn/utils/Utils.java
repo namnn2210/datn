@@ -1,6 +1,9 @@
 package ginp14.ngongocnam.datn.utils;
 
+import ginp14.ngongocnam.datn.model.Order;
+
 import javax.servlet.http.HttpServletRequest;
+import java.io.*;
 
 public class Utils {
     public static String getBaseUrl(HttpServletRequest request) {
@@ -19,4 +22,6 @@ public class Utils {
         }
         return url.toString();
     }
+
+
 }

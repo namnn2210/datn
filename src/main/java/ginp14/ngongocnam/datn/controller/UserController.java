@@ -3,6 +3,8 @@ package ginp14.ngongocnam.datn.controller;
 import ginp14.ngongocnam.datn.model.*;
 import ginp14.ngongocnam.datn.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -45,11 +47,8 @@ public class UserController {
     @Autowired
     private TypeService typeService;
 
-//    @Autowired
-//    private JwtUtil jwtUtil;
-//
-//    @Autowired
-//    private AuthenticationManager authenticationManager;
+    @Autowired
+    private HashOrderService hashOrderService;
 
 
     @GetMapping("/login")
@@ -188,10 +187,11 @@ public class UserController {
         String username = principal.getName();
         User user = userService.findByUsername(username);
         List<Order> orders = orderService.findByUserId(user.getId());
+        List<HashedOrder> hashedOrders = hashOrderService.findAllByUserId(user.getId());
         HashMap<Integer, List<OrderDetail>> maps = new HashMap<>();
-        for (Order order : orders) {
-            List<OrderDetail> orderDetails = orderDetailService.findByOrderId(order.getId());
-            maps.put(order.getId(), orderDetails);
+        for (HashedOrder hashedOrder : hashedOrders) {
+            List<OrderDetail> orderDetails = orderDetailService.findByOrderId(hashedOrder.getId());
+            maps.put(hashedOrder.getId(), orderDetails);
         }
         model.addAttribute("orders", orders);
         model.addAttribute("maps", maps);
@@ -232,16 +232,4 @@ public class UserController {
         model.addAttribute("categories", categoryService.findAllByStatus(true));
         return "views/other/register_success";
     }
-
-//    @PostMapping("/authenticate")
-//    public @ResponseBody String generateToken(@RequestBody UserCriteria userCriteria) throws Exception {
-//        try {
-//            authenticationManager.authenticate(
-//                    new UsernamePasswordAuthenticationToken(userCriteria.getUsername(), userCriteria.getPassword())
-//            );
-//        } catch (Exception ex) {
-//            System.err.println(ex);
-//        }
-//        return jwtUtil.generateToken(userCriteria.getUsername());
-//    }
 }

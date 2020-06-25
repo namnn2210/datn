@@ -17,6 +17,7 @@ import org.thymeleaf.context.Context;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
+import java.security.PrivateKey;
 import java.util.List;
 
 @Controller
@@ -45,6 +46,9 @@ public class CartController {
 
     @Autowired
     private TypeService typeService;
+
+    @Autowired
+    private KeyService keyService;
 
     private static final String SUCCESS_URL = "/cart/checkout/success";
     private static final String CANCEL_URL = "/cart/checkout/cancel";
@@ -129,10 +133,25 @@ public class CartController {
         order.setShippingName(checkoutName);
         order.setShippingPhone(checkoutPhone);
         order.setTotalPrice(cart.getTotalPrice());
-        orderService.save(order);
+//        orderService.save(order);
+        GenerateKeys keys = keyService.generateKeys();
+//        keyService.save(keys);
+//        Order to_order = orderService.findById(1);
+        byte[] byteOrder = Order.convertToBytes(order);
+        byte[] signed_order = keyService.sign(byteOrder, keys.getPrivateKey());
+        HashedOrder hashedOrder = new HashedOrder(user, byteOrder, signed_order);
+        orderService.save(hashedOrder);
+        keys.setHashedOrder(hashedOrder);
+        keyService.save(keys);
+//        System.out.println(signed_order);
+//        if (keyService.verifySignature(hashed_order, signed_order, to_order)) {
+//            System.out.println("true");
+//            Order order1 = (Order) Order.convertFromBytes(hashed_order);
+//            System.out.println(order1);
+//        }
         for (CartItem item : cartItems) {
             OrderDetail orderDetail = new OrderDetail();
-            orderDetail.setOrder(order);
+            orderDetail.setOrder(hashedOrder);
             orderDetail.setProduct(item.getProduct());
             orderDetail.setQuantity(item.getQuantity());
             orderDetail.setSize(item.getSize());

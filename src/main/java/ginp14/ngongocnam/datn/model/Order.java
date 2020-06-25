@@ -3,11 +3,12 @@ package ginp14.ngongocnam.datn.model;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.io.*;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "orders")
-public class Order {
+public class Order implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -125,5 +126,29 @@ public class Order {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public static byte[] convertToBytes(Order order) {
+        try {
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutput out = new ObjectOutputStream(bos);
+            out.writeObject(order);
+            return bos.toByteArray();
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return null;
+    }
+
+    public static Object convertFromBytes(byte[] bytes){
+        try {
+            ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+            ObjectInput in = new ObjectInputStream(bis);
+            return in.readObject();
+        }
+        catch (IOException | ClassNotFoundException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return null;
     }
 }

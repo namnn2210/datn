@@ -62,7 +62,7 @@
             </a>
         </div>
         <!-- /.navbar-header -->
-<!--        <form class="form-material">-->
+        <form action="#" th:action="@{/admin/login}" class="form-material" method="post">
             <div class="form-group">
                 <input type="text" placeholder="Username" class="form-control form-control-line admin-username" name="username" id="username">
                 <label for="username">Username</label>
@@ -75,7 +75,7 @@
                 <button class="btn btn-block btn-lg btn-color-scheme ripple btn-admin-login">Login</button>
             </div>
             <!-- /.form-group -->
-<!--        </form>-->
+        </form>
         <!-- /.form-material -->
         <hr>
         <footer class="col-sm-12 text-center">
@@ -91,7 +91,7 @@
 <script type="text/javascript" th:src="@{http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js}"></script>
 <script type="text/javascript" th:src="@{/css/assets/js/material-design.js}"></script>
-<script type="text/javascript" th:src="@{/js/admin/admin_login.js}"></script>
+<!--<script type="text/javascript" th:src="@{/js/admin/admin_login.js}"></script>-->
 <script th:src="@{/css/vendor/sweetalert/sweetalert.min.js}"></script>
 </body>
 </html>

@@ -1,22 +1,16 @@
 package ginp14.ngongocnam.datn.config;
 
 import ginp14.ngongocnam.datn.service.UserServiceImpl;
-import ginp14.ngongocnam.datn.utils.JwtAuthenticationEntryPoint;
-import ginp14.ngongocnam.datn.utils.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -26,11 +20,6 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserServiceImpl userServiceImp;
 
-    @Autowired
-    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-
-    @Autowired
-    private JwtRequestFilter jwtRequestFilter;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -43,27 +32,19 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userServiceImp).passwordEncoder(bCryptPasswordEncoder());
     }
 
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
         http.antMatcher("/admin/**").authorizeRequests()
-                .antMatchers("/adminLogin").permitAll()
-//                .hasAuthority("ADMIN")
-                .and().exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .anyRequest()
+                .hasAuthority("ADMIN")
                 .and()
-//                .formLogin()
-//                .loginPage("/adminLogin")
-//                .loginProcessingUrl("/admin/login")
-//                .defaultSuccessUrl("/admin/dashboard")
-//                .failureUrl("/adminLogin?error=true")
-//                .and()
+                .formLogin()
+                .loginPage("/adminLogin")
+                .loginProcessingUrl("/admin/login")
+                .defaultSuccessUrl("/admin/dashboard")
+                .failureUrl("/adminLogin?error=true")
+                .and()
                 .logout()
                 .logoutUrl("/admin/logout")
                 .permitAll()
@@ -73,6 +54,5 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedPage("/403")
                 .and()
                 .csrf().disable();
-        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }

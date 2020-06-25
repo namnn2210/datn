@@ -18,12 +18,12 @@ public class OrderController {
     @Autowired
     private OrderDetailService orderDetailService;
 
-    @PostMapping("/confirmOrder")
-    public @ResponseBody
-    String confirmOrder(@RequestBody int orderId) {
-        Order order = orderService.findById(orderId);
-        order.setStatus(true);
-        orderService.save(order);
-        return "false";
-    }
+//    @PostMapping("/confirmOrder")
+//    public @ResponseBody
+//    String confirmOrder(@RequestBody int orderId) {
+//        Order order = orderService.findById(orderId);
+//        order.setStatus(true);
+//        orderService.save(order);
+//        return "false";
+//    }
 }
