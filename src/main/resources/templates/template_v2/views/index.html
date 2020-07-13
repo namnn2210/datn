@@ -8,13 +8,92 @@
 </head>
 <body>
 <div layout:fragment="content">
+    <div class="slider-area">
+        <div id="ensign-nivoslider" class="slides nivoSlider">
+            <img th:src="@{template_v2/images/slide1.jpg}" alt="" title="#htmlcaption1" style="display: none; width: 1350px;">
+            <img th:src="@{template_v2/images/slide1.jpg}" alt="" title="#htmlcaption2" style="display: none; width: 1350px;">
+            <img class="nivo-main-image" src="images/slider/1-1.jpg" style="width: 1350px; height: auto;"><div class="nivo-caption" style="display: block;">
+            <div class="container slider-height">
+                <div class="row slider-height">
+                    <div class="col-md-offset-5 col-md-7 slider-height">
+                        <div class="slide-text">
+                            <div class="cap-title cap-main-title wow bounceInDown mb-35 text-uppercase text-white" data-wow-duration="0.5s" data-wow-delay="0s" style="visibility: visible; animation-duration: 0.5s; animation-delay: 0s; animation-name: bounceInDown;">
+                                <h2><strong>2016</strong></h2>
+                            </div>
+                            <div class="cap-sub-title cap-main-title wow bounceInDown mb-40 text-uppercase text-white" data-wow-duration="1s" data-wow-delay="0s" style="visibility: visible; animation-duration: 1s; animation-delay: 0s; animation-name: bounceInDown;">
+                                <h2>boutique special collection</h2>
+                            </div>
+                            <div class="cap-sub-title wow bounceInDown mb-30 text-white" data-wow-duration="1.5s" data-wow-delay="0s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0s; animation-name: bounceInDown;">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ipsum dolor sit amet labore et dolore</p>
+                            </div>
+                            <div class="cap-shop wow bounceInUp" data-wow-duration="2s" data-wow-delay=".5s" style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: bounceInUp;">
+                                <a href="#" class="button extra-small text-uppercase">
+                                    <span>Shop now</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="nivo-directionNav"><a class="nivo-prevNav">Prev</a><a class="nivo-nextNav">Next</a></div></div><div class="nivo-controlNav nivo-thumbs-enabled"></div>
+        <!-- direction 1 -->
+        <div id="htmlcaption1" class="nivo-html-caption slider-caption-1">
+            <div class="container slider-height">
+                <div class="row slider-height">
+                    <div class="col-md-offset-5 col-md-7 slider-height">
+                        <div class="slide-text">
+                            <div class="cap-title cap-main-title wow bounceInDown mb-35 text-uppercase text-white animated" data-wow-duration="0.5s" data-wow-delay="0s" style="visibility: visible; animation-duration: 0.5s; animation-delay: 0s; animation-name: bounceInDown;">
+                                <h2><strong>2016</strong></h2>
+                            </div>
+                            <div class="cap-sub-title cap-main-title wow bounceInDown mb-40 text-uppercase text-white animated" data-wow-duration="1s" data-wow-delay="0s" style="visibility: visible; animation-duration: 1s; animation-delay: 0s; animation-name: bounceInDown;">
+                                <h2>boutique special collection</h2>
+                            </div>
+                            <div class="cap-sub-title wow bounceInDown mb-30 text-white animated" data-wow-duration="1.5s" data-wow-delay="0s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0s; animation-name: bounceInDown;">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ipsum dolor sit amet labore et dolore</p>
+                            </div>
+                            <div class="cap-shop wow bounceInUp animated" data-wow-duration="2s" data-wow-delay=".5s" style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: bounceInUp;">
+                                <a href="#" class="button extra-small text-uppercase">
+                                    <span>Shop now</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- direction 2 -->
+        <div id="htmlcaption2" class="nivo-html-caption slider-caption-2">
+            <div class="container slider-height">
+                <div class="row slider-height">
+                    <div class="col-md-offset-5 col-md-7 slider-height">
+                        <div class="slide-text">
+                            <div class="cap-title cap-main-title wow bounceInDown mb-35 text-uppercase text-white animated" data-wow-duration="0.5s" data-wow-delay="0s" style="visibility: visible; animation-duration: 0.5s; animation-delay: 0s; animation-name: bounceInDown;">
+                                <h2><strong>2016</strong></h2>
+                            </div>
+                            <div class="cap-sub-title cap-main-title wow bounceInDown mb-40 text-uppercase text-white animated" data-wow-duration="1s" data-wow-delay="0s" style="visibility: visible; animation-duration: 1s; animation-delay: 0s; animation-name: bounceInDown;">
+                                <h2>boutique special collection</h2>
+                            </div>
+                            <div class="cap-sub-title wow bounceInDown mb-30 text-white animated" data-wow-duration="1.5s" data-wow-delay="0s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0s; animation-name: bounceInDown;">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ipsum dolor sit amet labore et dolore</p>
+                            </div>
+                            <div class="cap-shop wow bounceInUp animated" data-wow-duration="2s" data-wow-delay=".5s" style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: bounceInUp;">
+                                <a href="#" class="button extra-small text-uppercase">
+                                    <span>Shop now</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="banner-area section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-sm-5">
                     <div class="banner-img banner-hover mb-30">
                         <a href="#" class="b-img">
-                            <img src="images/banner/1.jpg" th:src="@{template_v2/images/banner/1.jpg}" alt="">
+                            <img src="images/banner/1.jpg" th:src="@{template_v2/images/banner1.jpg}" alt="" width="470" height="300">
                         </a>
                         <div class="shop-cart-icon">
                             <a href="#"><i class="zmdi zmdi-shopping-cart"></i></a>
@@ -24,7 +103,7 @@
                 <div class="col-sm-7">
                     <div class="banner-img banner-hover mb-30">
                         <a href="#" class="b-img">
-                            <img src="images/banner/2.jpg" th:src="@{template_v2/images/banner/2.jpg}" alt="">
+                            <img src="images/banner/2.jpg" th:src="@{template_v2/images/banner2.png}" alt="" width="670" height="300">
                         </a>
                         <div class="shop-cart-icon">
                             <a href="#"><i class="zmdi zmdi-shopping-cart"></i></a>
@@ -34,7 +113,7 @@
                 <div class="col-sm-7">
                     <div class="banner-img banner-hover rmb-30">
                         <a href="#" class="b-img">
-                            <img src="images/banner/3.jpg" th:src="@{template_v2/images/banner/3.jpg}" alt="">
+                            <img src="images/banner/3.jpg" th:src="@{template_v2/images/banner3.png}" alt="" width="470" height="300">
                         </a>
                         <div class="shop-cart-icon">
                             <a href="#"><i class="zmdi zmdi-shopping-cart"></i></a>
@@ -44,7 +123,7 @@
                 <div class="col-sm-5">
                     <div class="banner-img banner-hover">
                         <a href="#" class="b-img">
-                            <img src="images/banner/4.jpg" th:src="@{template_v2/images/banner/4.jpg}" alt="">
+                            <img src="images/banner/4.jpg" th:src="@{template_v2/images/banner4.jpg}" alt="" width="670" height="300">
                         </a>
                         <div class="shop-cart-icon">
                             <a href="#"><i class="zmdi zmdi-shopping-cart"></i></a>
@@ -83,7 +162,7 @@
                                 <div class="product-img-content mb-20">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img src="images/product/1.jpg" th:src="@{../../../static/template_v2/images/product/1.jpg}" alt="">
+                                            <img src="images/product/1.jpg" th:src="@{https://cdn-images.farfetch-contents.com/15/28/35/04/15283504_27880214_480.jpg}" alt="">
                                         </a>
                                     </div>
                                     <span class="new-label text-uppercase">-30%</span>
@@ -117,7 +196,7 @@
                                 <div class="product-img-content mb-20">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img src="images/product/5.jpg" th:src="@{../../../static/template_v2/images/product/5.jpg}" alt="">
+                                            <img src="images/product/5.jpg" th:src="@{https://cdn-images.farfetch-contents.com/15/50/90/28/15509028_27934699_1000.jpg}" alt="">
                                         </a>
                                     </div>
                                     <div class="product-action text-center">
@@ -152,7 +231,7 @@
                                 <div class="product-img-content mb-20">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img src="images/product/2.jpg" th:src="@{../../../static/template_v2/images/product/2.jpg}" alt="">
+                                            <img src="images/product/2.jpg" th:src="@{https://cdn-images.farfetch-contents.com/15/28/34/61/15283461_27743911_480.jpg}" alt="">
                                         </a>
                                     </div>
                                     <span class="new-label red-color text-uppercase">sale</span>
@@ -188,7 +267,7 @@
                                 <div class="product-img-content mb-20">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img src="images/product/6.jpg" th:src="@{../../../static/template_v2/images/product/6.jpg}" alt="">
+                                            <img src="images/product/6.jpg" th:src="@{https://cdn-images.farfetch-contents.com/15/54/22/15/15542215_27861566_480.jpg}" alt="">
                                         </a>
                                     </div>
                                     <div class="product-action text-center">
@@ -224,7 +303,7 @@
                                 <div class="product-img-content mb-20">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img src="images/product/3.jpg" th:src="@{../../../static/template_v2/images/product/3.jpg}" alt="">
+                                            <img src="images/product/3.jpg" th:src="@{https://cdn-images.farfetch-contents.com/15/36/15/03/15361503_27722295_480.jpg}" alt="">
                                         </a>
                                     </div>
                                     <span class="new-label text-uppercase">New</span>
@@ -259,7 +338,7 @@
                                 <div class="product-img-content mb-20">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img src="images/product/7.jpg" th:src="@{../../../static/template_v2/images/product/7.jpg}" alt="">
+                                            <img src="images/product/7.jpg" th:src="@{https://cdn-images.farfetch-contents.com/15/50/90/33/15509033_27927713_1000.jpg}" alt="">
                                         </a>
                                     </div>
                                     <span class="new-label red-color text-uppercase">sale</span>
@@ -296,7 +375,7 @@
                                 <div class="product-img-content mb-20">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img src="images/product/4.jpg" th:src="@{../../../static/template_v2/images/product/4.jpg}" alt="">
+                                            <img src="images/product/4.jpg" th:src="@{https://cdn-images.farfetch-contents.com/15/46/45/48/15464548_27793400_480.jpg}" alt="">
                                         </a>
                                     </div>
                                     <div class="product-action text-center">
@@ -329,7 +408,7 @@
                                 <div class="product-img-content mb-20">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img src="images/product/8.jpg" th:src="@{../../../static/template_v2/images/product/8.jpg}" alt="">
+                                            <img src="images/product/8.jpg" th:src="@{https://cdn-images.farfetch-contents.com/14/38/58/34/14385834_25504423_480.jpg}" alt="">
                                         </a>
                                     </div>
                                     <span class="new-label text-uppercase">New</span>
@@ -368,7 +447,7 @@
                                 <div class="product-img-content mb-20">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img src="images/product/2.jpg" th:src="@{../../../static/template_v2/images/product/2.jpg}" alt="">
+                                            <img src="images/product/2.jpg" th:src="@{https://cdn-images.farfetch-contents.com/15/28/89/74/15288974_27791355_1000.jpg}" alt="">
                                         </a>
                                     </div>
                                     <span class="new-label red-color text-uppercase">sale</span>
@@ -404,7 +483,7 @@
                                 <div class="product-img-content mb-20">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img src="images/product/6.jpg" th:src="@{../../../static/template_v2/images/product/6.jpg}" alt="">
+                                            <img src="images/product/6.jpg" th:src="@{https://cdn-images.farfetch-contents.com/14/40/03/79/14400379_24697039_480.jpg}" alt="">
                                         </a>
                                     </div>
                                     <div class="product-action text-center">
@@ -440,7 +519,7 @@
                                 <div class="product-img-content mb-20">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img src="images/product/3.jpg" th:src="@{../../../static/template_v2/images/product/3.jpg}" alt="">
+                                            <img src="images/product/3.jpg" th:src="@{https://cdn-images.farfetch-contents.com/14/91/56/88/14915688_26376734_480.jpg}" alt="">
                                         </a>
                                     </div>
                                     <span class="new-label text-uppercase">New</span>
@@ -475,7 +554,7 @@
                                 <div class="product-img-content mb-20">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img src="images/product/7.jpg" th:src="@{../../../static/template_v2/images/product/7.jpg}" alt="">
+                                            <img src="images/product/7.jpg" th:src="@{https://cdn-images.farfetch-contents.com/14/91/56/88/14915688_26376734_480.jpg}" alt="">
                                         </a>
                                     </div>
                                     <span class="new-label red-color text-uppercase">sale</span>
@@ -512,7 +591,7 @@
                                 <div class="product-img-content mb-20">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img src="images/product/4.jpg" th:src="@{../../../static/template_v2/images/product/4.jpg}" alt="">
+                                            <img src="images/product/4.jpg" th:src="@{https://cdn-images.farfetch-contents.com/15/21/70/30/15217030_27669701_480.jpg}" alt="">
                                         </a>
                                     </div>
                                     <div class="product-action text-center">
@@ -545,7 +624,7 @@
                                 <div class="product-img-content mb-20">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img src="images/product/8.jpg" th:src="@{../../../static/template_v2/images/product/8.jpg}" alt="">
+                                            <img src="images/product/8.jpg" th:src="@{https://cdn-images.farfetch-contents.com/15/35/93/02/15359302_27768033_480.jpg}" alt="">
                                         </a>
                                     </div>
                                     <span class="new-label text-uppercase">New</span>
@@ -582,7 +661,7 @@
                                 <div class="product-img-content mb-20">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img src="images/product/1.jpg" th:src="@{../../../static/template_v2/images/product/1.jpg}" alt="">
+                                            <img src="images/product/1.jpg" th:src="@{https://cdn-images.farfetch-contents.com/15/47/03/05/15470305_27435897_480.jpg}" alt="">
                                         </a>
                                     </div>
                                     <span class="new-label text-uppercase">-30%</span>
@@ -653,7 +732,7 @@
                                 <div class="product-img-content mb-20">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img src="images/product/4.jpg" th:src="@{../../../static/template_v2/images/product/4.jpg}" alt="">
+                                            <img src="images/product/4.jpg" th:src="@{https://www.farfetch.com/vn/shopping/men/burberry-swan-print-t-shirt-item-15249486.aspx?storeid=9359g}" alt="">
                                         </a>
                                     </div>
                                     <div class="product-action text-center">
@@ -686,7 +765,7 @@
                                 <div class="product-img-content mb-20">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img src="images/product/8.jpg" th:src="@{../../../static/template_v2/images/product/8.jpg}" alt="">
+                                            <img src="images/product/8.jpg" th:src="@{https://cdn-images.farfetch-contents.com/15/28/21/44/15282144_27248904_480.jpg}" alt="">
                                         </a>
                                     </div>
                                     <span class="new-label text-uppercase">New</span>
@@ -723,7 +802,7 @@
                                 <div class="product-img-content mb-20">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img src="images/product/1.jpg" th:src="@{../../../static/template_v2/images/product/1.jpg}" alt="">
+                                            <img src="images/product/1.jpg" th:src="@{https://cdn-images.farfetch-contents.com/15/28/24/34/15282434_27185596_480.jpg}" alt="">
                                         </a>
                                     </div>
                                     <span class="new-label text-uppercase">-30%</span>
@@ -757,7 +836,7 @@
                                 <div class="product-img-content mb-20">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img src="images/product/5.jpg" th:src="@{../../../static/template_v2/images/product/5.jpg}" alt="">
+                                            <img src="images/product/5.jpg" th:src="@{https://cdn-images.farfetch-contents.com/14/81/08/42/14810842_27326099_1000.jpg}" alt="">
                                         </a>
                                     </div>
                                     <div class="product-action text-center">
@@ -949,7 +1028,7 @@
                                 <div class="col-xs-6">
                                     <div class="sale-img">
                                         <a href="product-details.html" title="Men’s White Short Item">
-                                            <img src="images/sale/1.jpg" alt="">
+                                            <img src="images/sale/1.jpg" th:src="@{https://cdn-images.farfetch-contents.com/15/28/20/93/15282093_27660908_480.jpg}" alt="">
                                         </a>
                                         <div class="sale-shop">
                                             <a href="#">
@@ -981,7 +1060,7 @@
                                 <div class="col-xs-6">
                                     <div class="sale-img">
                                         <a href="product-details.html" title="Men’s White Short Item">
-                                            <img src="images/sale/2.jpg" alt="">
+                                            <img src="images/sale/2.jpg" th:src="@{https://cdn-images.farfetch-contents.com/14/52/81/72/14528172_23501119_480.jpg}" alt="">
                                         </a>
                                         <div class="sale-shop">
                                             <a href="#">
@@ -1013,7 +1092,7 @@
                                 <div class="col-xs-6">
                                     <div class="sale-img">
                                         <a href="product-details.html" title="Men’s White Short Item">
-                                            <img src="images/sale/3.jpg" alt="">
+                                            <img src="images/sale/3.jpg" th:src="@{https://cdn-images.farfetch-contents.com/14/65/24/08/14652408_26541983_480.jpg}" alt="">
                                         </a>
                                         <div class="sale-shop">
                                             <a href="#">
@@ -1052,7 +1131,7 @@
                                 <div class="col-xs-6">
                                     <div class="sale-img">
                                         <a href="product-details.html" title="Men’s White Short Item">
-                                            <img src="images/sale/4.jpg" alt="">
+                                            <img src="images/sale/4.jpg" th:src="@{https://cdn-images.farfetch-contents.com/15/36/27/28/15362728_27422038_480.jpg}" alt="">
                                         </a>
                                         <div class="sale-shop">
                                             <a href="#">
@@ -1083,7 +1162,7 @@
                                 <div class="col-xs-6">
                                     <div class="sale-img">
                                         <a href="product-details.html" title="Men’s White Short Item">
-                                            <img src="images/sale/5.jpg" alt="">
+                                            <img src="images/sale/5.jpg" th:src="@{https://cdn-images.farfetch-contents.com/15/34/09/90/15340990_27263315_480.jpg}" alt="">
                                         </a>
                                         <div class="sale-shop">
                                             <a href="#">
@@ -1115,7 +1194,7 @@
                                 <div class="col-xs-6">
                                     <div class="sale-img">
                                         <a href="product-details.html" title="Men’s White Short Item">
-                                            <img src="images/sale/6.jpg" alt="">
+                                            <img src="images/sale/6.jpg" th:src="@{https://cdn-images.farfetch-contents.com/14/81/08/82/14810882_27672319_1000.jpg}" alt="">
                                         </a>
                                         <div class="sale-shop">
                                             <a href="#">
@@ -1146,7 +1225,7 @@
                 <div class="col-md-4 hidden-sm">
                     <div class="offer-banner">
                         <a href="#">
-                            <img src="images/sale/offer.jpg" alt="">
+                            <img src="images/sale/offer.jpg" th:src="@{https://cdn-images.farfetch-contents.com/14/81/08/82/14810882_27672319_1000.jpg}" alt="">
                         </a>
                     </div>
                 </div>
